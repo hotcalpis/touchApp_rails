@@ -1,0 +1,11 @@
+%header.header
+  .container
+    = link_to "touchApp", "#", id: "logo"
+    %nav
+      %ul.nav.navbar-right.navbar-nav
+        /- if ユーザー未ログイン
+        %li<
+          = link_to "ログイン", new_user_session_url
+        %li<
+          = link_to "新規登録", new_user_registration_url
+		

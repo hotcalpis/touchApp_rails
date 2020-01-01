@@ -1,0 +1,47 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.alert {
+  background-color: orange;
+	text-align: center;
+}
+
+/*header*/
+
+.header {
+  background-color: lightgreen;
+	
+}
+
+#logo {
+  float: left;
+	font-size: 1.9em;
+	font-weight: bold;
+	color: darkblue;
+	margin-right: 10px;
+	letter-spacing: -1px;
+	padding-top: 7px;
+	&:hover {
+	  text-decoration: none;
+	}
+}
+
+/*post_index*/
+
+.heading {
+	text-align: center;
+}
+
+.introduction {
+	text-align: center;
+}
+
+/*footer*/
+
+.footer {
+  background-color: lightgreen;
+}
+
+.created_by {
+	text-align: center;
+}
