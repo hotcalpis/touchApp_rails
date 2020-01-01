@@ -1,0 +1,3 @@
+routesにusers#tmp_post_index設定
+usersコントローラにtmp_post_index配置
+layoutsにtmp_post_index配置
