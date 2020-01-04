@@ -34,13 +34,17 @@ RSpec.describe Post, type: :model do
       post = build(:post, content: "a" * 2001)
       expect(post).to be_invalid
     end
+  end
 
+  describe 'default scope' do
     it 'order should be most recent first' do
       first_created = create(:post)
       second_created = create(:post)
       expect(second_created).to eq Post.first
     end
+  end
 
+  describe 'association' do
     it 'should depend on user' do
       belong_user = create(:user)
       post = belong_user.posts.create(title: "Lorem", content: "ipsum")
