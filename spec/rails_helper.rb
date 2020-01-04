@@ -10,7 +10,6 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 require 'devise'
-require File.expand_path("spec/support/request_spec_helper.rb")
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -37,8 +36,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 
-#request内でsignin/signoutするためのヘルパー
-include Warden::Test::Helpers
+
+#include Warden::Test::Helpers
 
 
 
@@ -73,5 +72,5 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include RequestSpecHelper, type: :request
+  #config.include RequestSpecHelper, type: :request
 end

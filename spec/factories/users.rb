@@ -1,8 +1,11 @@
 FactoryBot.define do
   factory :user do
-    sequence(:name) { |n| "TEST_NAME#{n}" }
+    name { "test" }
     sequence(:email) { |n| "TEST#{n}@example.com" }
-    password { 'testuser' }
+    password { "testuser" }
+
+    trait :have_posts do
+      after(:create) { |user| create_list(:post, 5, user: user) }
+    end
   end
-  
 end
