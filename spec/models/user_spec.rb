@@ -70,7 +70,9 @@ RSpec.describe User, type: :model do
       user.password = "asamura"
       expect(user.valid?).to eq(false)
     end
+  end
 
+  describe 'association' do
     it 'can have many posts' do
       user = create(:user, :have_posts)
       expect(user.posts.length).to eq 5
