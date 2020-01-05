@@ -1,23 +1,17 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
+  def new; end
 
-  def new
-  end
+  def create; end
 
-  def create
-  end
+  def index; end
 
-  def index
-  end
+  def show; end
 
-  def show
-  end
+  def edit; end
 
-  def edit
-  end
+  def update; end
 
-  def update
-  end
-  
-  def delete
-  end
+  def delete; end
 end
