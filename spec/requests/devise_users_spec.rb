@@ -1,24 +1,28 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "DeviseUsers", type: :request do
+RSpec.describe 'DeviseUsers', type: :request do
   let(:user) { create(:user) }
-  let(:unconfirmed_user) { create (:user) }
+  let(:unconfirmed_user) { create :user }
   let(:user_params) { attributes_for(:user) }
-  let(:invalid_user_params) { attributes_for(:user, name: "") }
-  let(:update_params) { attributes_for(:user, name: "Updated",
-                                              email: "Updated@test.com",
-                                              password: "password",
-                                              password_confirmation: "password",
-                                              current_password: "testuser" ) }
-  let(:invalid_update_params) { attributes_for(:user, name: "",
-                                                      email: "",
-                                                      password: "password",
-                                                      password_confirmation: "password",
-                                                      current_password: "testuser" ) }
+  let(:invalid_user_params) { attributes_for(:user, name: '') }
+  let(:update_params) do
+    attributes_for(:user, name: 'Updated',
+                          email: 'Updated@test.com',
+                          password: 'password',
+                          password_confirmation: 'password',
+                          current_password: 'testuser')
+  end
+  let(:invalid_update_params) do
+    attributes_for(:user, name: '',
+                          email: '',
+                          password: 'password',
+                          password_confirmation: 'password',
+                          current_password: 'testuser')
+  end
 
-  before { user.confirm } #注意
-
-
+  before { user.confirm } # 注意
 
   describe 'GET #new' do
     subject { get new_user_registration_path }
@@ -26,7 +30,6 @@ RSpec.describe "DeviseUsers", type: :request do
       is_expected.to eq 200
     end
   end
-
 
   describe 'POST #create' do
     before do
@@ -79,8 +82,6 @@ RSpec.describe "DeviseUsers", type: :request do
     end
   end
 
-
-
   describe 'GET #show' do
     context '認証済みユーザーが存在する場合' do
       it 'リクエストが成功すること' do
@@ -99,12 +100,10 @@ RSpec.describe "DeviseUsers", type: :request do
       it 'エラーが発生すること' do
         user_id = user.id
         user.destroy
-        expect{ get "/users/#{user_id}" }.to raise_error ActiveRecord::RecordNotFound
+        expect { get "/users/#{user_id}" }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end
-
-
 
   describe 'GET #edit' do
     subject { get edit_user_registration_path }
@@ -123,8 +122,6 @@ RSpec.describe "DeviseUsers", type: :request do
     end
   end
 
-
-
   describe 'PATCH #update' do
     before do
       sign_in user
@@ -138,7 +135,7 @@ RSpec.describe "DeviseUsers", type: :request do
       it 'updateが成功すること' do
         expect do
           patch user_registration_path, params: { user: update_params }
-        end.to change { User.find(user.id).name }.from(user.name).to("Updated")
+        end.to change { User.find(user.id).name }.from(user.name).to('Updated')
       end
 
       it 'リダイレクトされること' do
@@ -166,8 +163,6 @@ RSpec.describe "DeviseUsers", type: :request do
     end
   end
 
-
-
   describe 'DELETE #destroy' do
     subject { delete user_registration_path }
     context 'ログインしている場合' do
@@ -185,24 +180,20 @@ RSpec.describe "DeviseUsers", type: :request do
     end
   end
 
-
-
   describe 'GET passwords#new' do
-    #subject { get new_user_password_path }
+    # subject { get new_user_password_path }
   end
 
   describe 'GET passwords#edit' do
-    #subject { get edit_user_password_path }
+    # subject { get edit_user_password_path }
   end
 
   describe 'PATCH passwords#update' do
-    #subject { patch user_password_path, params: { user: { email: user.email  } } }
+    # subject { patch user_password_path, params: { user: { email: user.email  } } }
   end
 
-
-
   describe 'GET /admin' do
-    subject { get "/admin" }
+    subject { get '/admin' }
     before do
       sign_in user
     end
