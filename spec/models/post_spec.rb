@@ -17,7 +17,6 @@
 #  index_posts_on_user_id_and_created_at  (user_id,created_at)
 #
 
-
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
@@ -42,15 +41,15 @@ RSpec.describe Post, type: :model do
       expect(post).to be_invalid
     end
 
-    # 50文字以下でfailure
+    # 255文字以下でfailure
     it 'is invalid with too long title' do
-      post = build(:post, title: 'a' * 51)
+      post = build(:post, title: 'a' * 256)
       expect(post).to be_invalid
     end
 
-    # 2000文字以下でfailure
+    # 20000文字以下でfailure
     it 'is invalid with too long content' do
-      post = build(:post, content: 'a' * 2001)
+      post = build(:post, content: 'a' * 20_001)
       expect(post).to be_invalid
     end
   end

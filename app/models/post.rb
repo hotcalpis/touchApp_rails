@@ -17,13 +17,12 @@
 #  index_posts_on_user_id_and_created_at  (user_id,created_at)
 #
 
-
 class Post < ApplicationRecord
   belongs_to :user
 
   default_scope -> { order(created_at: :desc) }
 
-  validates :title, presence: true, length: { maximum: 50 }
-  validates :content, presence: true, length: { maximum: 2000 }
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :content, presence: true, length: { maximum: 20_000 }
   validates :user, presence: true
 end

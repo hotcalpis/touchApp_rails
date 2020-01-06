@@ -17,7 +17,6 @@
 #  index_posts_on_user_id_and_created_at  (user_id,created_at)
 #
 
-
 FactoryBot.define do
   factory :post do
     sequence(:id) { |i| i }

@@ -4,6 +4,10 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title TouchApp
     = render 'layouts/rails_default'
+
+    %link(rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css")
+    %script(src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js")
+
   %body
     = render 'layouts/header'
     - flash.each do |message_type, message|

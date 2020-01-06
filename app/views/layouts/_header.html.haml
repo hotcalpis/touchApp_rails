@@ -1,13 +1,16 @@
-%header.header
+%header
   .container
-    = link_to "touchApp", "#", id: "logo"
+    = link_to "touchApp", root_url, id: "logo"
     %nav
       %ul.nav.navbar-right.navbar-nav
-        /- if ユーザー未ログイン
-        %li<
-          = link_to "ログイン", new_user_session_url
-        %li<
-          = link_to "ログアウト", destroy_user_session_url, method: :DELETE
-        %li<
-          = link_to "新規登録", new_user_registration_url
+        - if user_signed_in?
+          %li<
+            = link_to "新規投稿", new_post_url
+          %li<
+            = link_to "ログアウト", destroy_user_session_url, method: :DELETE
+        - else
+          %li<
+            = link_to "ログイン", new_user_session_url
+          %li<
+            = link_to "新規登録", new_user_registration_url
         
