@@ -1,0 +1,28 @@
+= form_for @post do |f|
+
+  -if f.object.errors.any?
+    #error_explanation
+      .alert.alert-danger
+        The form contains error.
+    %ul
+      - f.object.errors.full_messages.each do |msg|
+        %li
+          = msg
+
+
+  = f.label :title
+  = f.text_field :title, class: 'form-control'
+
+  = f.label :content
+  = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
+    
+  = f.submit 'submit',  class: 'btn btn-primary'
+
+
+%p contentフォームはMarkdown記法です
+%p 見出し(h1,h2...)の際は#の後に空白を置いて下さい
+
+%script
+  const mde = new SimpleMDE({
+  element: document.getElementById("simplemde")
+  });

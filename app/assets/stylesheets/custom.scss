@@ -8,7 +8,7 @@
 
 /*header*/
 
-.header {
+header {
   background-color: lightgreen;
 	
 }
@@ -26,6 +26,16 @@
 	}
 }
 
+/*footer*/
+
+.footer {
+  background-color: lightgreen;
+}
+
+.created_by {
+	text-align: center;
+}
+
 /*post_index*/
 
 .heading {
@@ -36,12 +46,20 @@
 	text-align: center;
 }
 
-/*footer*/
+/*posts#show*/
 
-.footer {
-  background-color: lightgreen;
+.post_title {
+	text-align: center;
+	padding: 0 80px;
 }
 
-.created_by {
-	text-align: center;
+.auther {
+	float: right;
+	margin-right: 60px;
+}
+
+.post_content {
+	/*background-color: lightgray;*/
+	margin:80px;
+	font-size: 1.2em;
 }
