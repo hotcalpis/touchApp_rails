@@ -49,6 +49,7 @@ gem 'kaminari-bootstrap'
 gem 'rails_admin'
 gem 'redcarpet'
 gem 'rubocop', require: false
+gem 'aws-sdk-s3', require: false
 # gem 'mysql2'
 
 group :development, :test do

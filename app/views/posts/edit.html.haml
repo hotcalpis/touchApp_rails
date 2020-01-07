@@ -23,8 +23,7 @@
 
 %P
   - if current_user == @post.user
-    .btn
-      = link_to "削除", post_path, method: :delete
+    #{button_to "post delete", post_path, data: { confirm: "Are you sure?" }, method: :delete}
 
 
 %p contentフォームはMarkdown記法です
