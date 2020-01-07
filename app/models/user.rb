@@ -12,6 +12,7 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           default(""), not null
+#  profile                :text             default("")
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -29,11 +30,14 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
+  has_one_attached :avatar
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :profile, length: { maximum: 400 }
   validates :email, presence: true, length: { maximum: 255 },
                     uniqueness: { case_sensitive: false }
 end
