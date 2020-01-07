@@ -6,6 +6,10 @@
 	text-align: center;
 }
 
+.avatar {
+	border-radius: 10px;
+}
+
 /*header*/
 
 header {
@@ -59,7 +63,6 @@ header {
 }
 
 .post_content {
-	/*background-color: lightgray;*/
 	margin:80px;
 	font-size: 1.2em;
 }

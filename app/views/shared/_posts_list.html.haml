@@ -1,0 +1,6 @@
+.list-group
+  - @posts.each do |post|
+    =link_to(post, class: 'list-group-item') do
+      %h4
+        = post.title
+  = paginate @posts
