@@ -12,6 +12,7 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           default(""), not null
+#  profile                :text             default("")
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -46,15 +47,20 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to eq(false)
     end
 
-    # 20文字以下にするとfailure
-    it 'nameは20文字まで' do
-      user.name = 'a' * 21
+    # 50文字以下にするとfailure
+    it 'nameは50文字まで' do
+      user.name = 'a' * 51
       expect(user.valid?).to eq(false)
     end
 
     # 255文字以下にするとfailure
     it 'emailは255文字まで' do
       user.email = 'a' * 244 + '@example.com'
+      expect(user.valid?).to eq(false)
+    end
+
+    it 'profileは400文字まで' do
+      user.profile = 'a' * 401
       expect(user.valid?).to eq(false)
     end
 
