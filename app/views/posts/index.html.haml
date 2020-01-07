@@ -1,9 +1,4 @@
 %h3.heading touchAppは作成したアプリケーションを紹介するための記事投稿サイトです
 %p.introduction 投稿一覧
 
-.list-group
-  - @posts.each do |post|
-    =link_to(post, class: 'list-group-item') do
-      %h4
-        = post.title
-  = paginate @posts
+= render 'shared/posts_list'
