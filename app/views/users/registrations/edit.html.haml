@@ -32,6 +32,12 @@
     %i (we need your current password to confirm your changes)
     %br/
     = f.password_field :current_password, autocomplete: "current-password"
+  .field
+    = f.label :profile
+    %br/
+    = f.text_field :profile
+  .field
+    = f.file_field :avatar
   .actions
     = f.submit "Update"
 %h3 Cancel my account
