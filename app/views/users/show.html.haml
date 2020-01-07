@@ -1,6 +1,8 @@
 %p
   = "#{@user.name}のプロフィール"
+%p
+  = @user.profile
 - if @user.avatar.attached?
   = image_tag @user.avatar
-
-= link_to '編集', edit_user_registration_path
+- if current_user == @user 
+  = link_to '編集', edit_user_registration_path
