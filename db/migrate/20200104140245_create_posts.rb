@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true, null: false
       t.text :title, null: false
       t.text :content, null: false
+      t.integer :likes_count
       t.timestamps null: false
     end
     add_index :posts, %i[user_id created_at]
