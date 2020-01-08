@@ -1,4 +1,4 @@
-= form_for @post do |f|
+= form_for post do |f|
 
   -if f.object.errors.any?
     #error_explanation
@@ -23,7 +23,7 @@
     技術的な問題で編集失敗時に変更内容が残せないので編集前にコピーを取っておくことをお勧めします　m(_ _ )m
 
   %P
-    - if current_user == @post.user
+    - if current_user == post.user
       #{button_to "post delete", post_path, data: { confirm: "Are you sure?" }, method: :delete}
 
 

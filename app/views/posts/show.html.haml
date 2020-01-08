@@ -6,5 +6,8 @@
 - if current_user == @post.user
   .btn
     = link_to "編集", edit_post_path(@post)
+
+= render 'likes/like', post: @post, like: @like
+
 .post_content  
   = markdown_to_html(@post.content)
