@@ -111,5 +111,10 @@ RSpec.describe User, type: :model do
       user = create(:user, :have_posts)
       expect(user.posts.length).to eq 5
     end
+
+    it 'can have many likes' do
+      user = create(:user, :have_likes)
+      expect(user.likes.length).to eq 5
+    end
   end
 end
