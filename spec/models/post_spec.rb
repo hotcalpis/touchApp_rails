@@ -6,7 +6,7 @@
 #
 #  id          :integer          not null, primary key
 #  content     :text             not null
-#  likes_count :integer
+#  likes_count :integer          default(0)
 #  title       :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -69,6 +69,11 @@ RSpec.describe Post, type: :model do
       post = belong_user.posts.create(title: 'Lorem', content: 'ipsum')
       belong_user.destroy
       expect { post.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+
+    it 'can have many likes' do
+      post = create(:post, :have_likes)
+      expect(post.likes.length).to eq 5
     end
   end
 end

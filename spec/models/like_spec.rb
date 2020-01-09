@@ -17,5 +17,21 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'association' do
+    it 'should depend on user' do
+      belong_user = create(:user)
+      belong_post = create(:post)
+      like = belong_user.likes.create(post_id: belong_post.id)
+      belong_user.destroy
+      expect { like.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+
+    it 'should depend on post' do
+      belong_user = create(:user)
+      belong_post = create(:post)
+      like = belong_post.likes.create(user_id: belong_user.id)
+      belong_post.destroy
+      expect { like.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+  end
 end
