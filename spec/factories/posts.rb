@@ -6,7 +6,7 @@
 #
 #  id          :integer          not null, primary key
 #  content     :text             not null
-#  likes_count :integer
+#  likes_count :integer          default(0)
 #  title       :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -24,5 +24,9 @@ FactoryBot.define do
     title { 'TestTitle' }
     content { 'TestContent' }
     association :user
+
+    trait :have_likes do
+      after(:create) { |post| create_list(:like, 5, post: post) }
+    end
   end
 end
