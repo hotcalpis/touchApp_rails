@@ -1,4 +1,3 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 .alert {
@@ -28,7 +27,6 @@ header {
 	color: darkblue;
 	margin-right: 10px;
 	letter-spacing: -1px;
-	padding-top: 7px;
 	&:hover {
 	  text-decoration: none;
 	}
