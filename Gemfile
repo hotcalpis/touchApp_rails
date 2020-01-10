@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'annotate'
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
 gem 'factory_bot_rails'
