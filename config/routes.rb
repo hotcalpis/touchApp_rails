@@ -3,6 +3,8 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#           comments_create GET    /comments/create(.:format)                                                               comments#create
+#          comments_destroy GET    /comments/destroy(.:format)                                                              comments#destroy
 #              likes_create GET    /likes/create(.:format)                                                                  likes#create
 #             likes_destroy GET    /likes/destroy(.:format)                                                                 likes#destroy
 #               rails_admin        /admin                                                                                   RailsAdmin::Engine
@@ -28,6 +30,8 @@
 #                      user GET    /users/:id(.:format)                                                                     users#show
 #                post_likes POST   /posts/:post_id/likes(.:format)                                                          likes#create
 #                 post_like DELETE /posts/:post_id/likes/:id(.:format)                                                      likes#destroy
+#             post_comments POST   /posts/:post_id/comments(.:format)                                                       comments#create
+#              post_comment DELETE /posts/:post_id/comments/:id(.:format)                                                   comments#destroy
 #                     posts GET    /posts(.:format)                                                                         posts#index
 #                           POST   /posts(.:format)                                                                         posts#create
 #                  new_post GET    /posts/new(.:format)                                                                     posts#new
@@ -55,6 +59,8 @@
 # show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
 
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
   get 'likes/create'
   get 'likes/destroy'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -66,5 +72,6 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 end

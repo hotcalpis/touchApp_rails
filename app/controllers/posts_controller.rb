@@ -23,7 +23,10 @@ class PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(8)
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user)
+  end
 
   def edit; end
 

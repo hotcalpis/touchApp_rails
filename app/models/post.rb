@@ -20,7 +20,7 @@
 
 class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
-  has_many :liking_users, through: :likes, source: :user
+  has_many :comments, dependent: :destroy
 
   belongs_to :user
 
@@ -28,7 +28,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :content, presence: true, length: { maximum: 20_000 }
-  validates :user, presence: true
 
   def liked_by?(user)
     user.likes.find_by(post_id: self.id)
