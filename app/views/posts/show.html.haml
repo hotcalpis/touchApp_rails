@@ -19,9 +19,4 @@
 
     = f.submit 'submit',  class: 'btn btn-primary'
 
-- @comments.each do |comment|
-  %p
-    = display_user_avatar(comment.user, 40, 40) 
-    = comment.content
-    - if comment.user == current_user
-      = link_to "削除", post_comment_path(post_id: @post.id, id: comment.id), method: :delete
+= render @comments
