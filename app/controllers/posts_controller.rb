@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes([:user, user: :avatar_attachment])
   end
 
   def edit; end

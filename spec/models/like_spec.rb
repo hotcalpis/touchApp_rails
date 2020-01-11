@@ -17,7 +17,17 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  describe 'association' do
+  describe 'validations' do
+    it 'should be unique of specific user-post' do
+      user = create(:user)
+      post = create(:post)
+      original_like = user.likes.create(post_id: post.id)
+      another_like = user.likes.new(post_id: post.id)
+      expect(another_like.valid?).to be false
+    end
+  end
+
+  describe 'associations' do
     it 'should depend on user' do
       belong_user = create(:user)
       belong_post = create(:post)

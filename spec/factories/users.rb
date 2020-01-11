@@ -40,6 +40,10 @@ FactoryBot.define do
     trait :have_likes do
       after(:create) { |user| create_list(:like, 5, user: user) }
     end
+
+    trait :have_comments do
+      after(:create) { |user| create_list(:comment, 5, user: user) }
+    end
   end
 
   factory :other_user, class: User do
