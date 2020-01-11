@@ -1,6 +1,8 @@
 .list-group
   - posts.each do |post|
-    =link_to(post, class: 'list-group-item') do
+    = link_to(post, class: 'list-group-item') do
       %h4
         = post.title
+      = image_tag('like_icon_green.svg', size: '20x20')
+      = post.likes_count
   = paginate posts
