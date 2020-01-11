@@ -1,13 +1,14 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+%h2 ユーザー情報編集
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
     = f.label :name
+    %i (必須)
     %br/
     = f.text_field :name, autofocus: true, autocomplete: "name"
   .field
     = f.label :email
+    %i (必須)
     %br/
     = f.email_field :email, autofocus: true, autocomplete: "email"
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -15,32 +16,31 @@
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .field
     = f.label :password
-    %i (leave blank if you don't want to change it)
+    - if @minimum_password_length
+      %em
+        = "( #{@minimum_password_length}"
+        文字以上)
+    %i (変更しない場合は空にして下さい)
     %br/
     = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
-      %br/
-      %em
-        = @minimum_password_length
-        characters minimum
   .field
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .field
     = f.label :current_password
-    %i (we need your current password to confirm your changes)
+    %i (必須)
     %br/
     = f.password_field :current_password, autocomplete: "current-password"
   .field
     = f.label :profile
     %br/
-    = f.text_field :profile
+    = f.text_area :profile, rows: "4", cols: "50"
   .field
     = f.file_field :avatar
   .actions
-    = f.submit "Update"
-%h3 Cancel my account
+    = f.submit "更新"
+%h3 アカウント削除
 %p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+  #{button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+= link_to "戻る", :back

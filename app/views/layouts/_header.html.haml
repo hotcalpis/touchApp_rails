@@ -8,6 +8,8 @@
             = link_to "新規投稿", new_post_url
           %li<
             = link_to "ログアウト", destroy_user_session_url, method: :DELETE
+          %li<
+            = link_to "マイページ", user_path(current_user)
         - else
           %li<
             = link_to "ログイン", new_user_session_url
