@@ -6,6 +6,14 @@
 - if current_user == @user 
   = link_to '編集', edit_user_registration_path
 
-%p.introduction 投稿一覧
+%ul.nav.nav-tabs
+  %li.nav-item
+    %a{ href: '#posts_list', class: 'nav-link active', 'data-toggle' => 'tab' } 投稿一覧
+  %li.nav-item
+    %a{ href: '#like_posts', class: 'nav-link', 'data-toggle' => 'tab' } いいねした記事
 
-= render 'shared/posts_list', posts: @posts
+.tab-content
+  #posts_list.tab-pane.active
+    = render 'shared/posts_list', posts: @posts
+  #like_posts.tab-pane
+    = render 'shared/posts_list', posts: @like_posts
