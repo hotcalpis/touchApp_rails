@@ -15,7 +15,7 @@ RSpec.feature 'users_authentications', type: :feature do
       fill_in 'Email',                 with: 'user@invalid'
       fill_in 'Password',              with: 'foo'
       fill_in 'Password confirmation', with: 'bar'
-      click_on 'Sign up'
+      click_on '登録'
       expect(User.count).to eq(before_count)
     end
 
@@ -26,7 +26,7 @@ RSpec.feature 'users_authentications', type: :feature do
       fill_in 'Email',                 with: 'user@example.com'
       fill_in 'Password',              with: 'password'
       fill_in 'Password confirmation', with: 'password'
-      click_on 'Sign up'
+      click_on '登録'
       expect(User.count).to eq(before_count + 1)
       expect(ActionMailer::Base.deliveries.size).to eq(1)
     end

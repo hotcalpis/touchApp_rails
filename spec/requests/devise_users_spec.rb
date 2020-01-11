@@ -77,7 +77,7 @@ RSpec.describe 'DeviseUsers', type: :request do
 
       it 'エラーが表示されること' do
         post user_registration_path, params: { user: invalid_user_params }
-        expect(response.body).to include 'prohibited this user from being saved'
+        expect(response.body).to include 'のエラーがあります。修正して再度送信して下さい。'
       end
     end
   end
@@ -158,7 +158,7 @@ RSpec.describe 'DeviseUsers', type: :request do
 
       it 'エラーが表示されること' do
         patch user_registration_path, params: { user: invalid_update_params }
-        expect(response.body).to include 'prohibited this user from being saved'
+        expect(response.body).to include 'のエラーがあります。修正して再度送信して下さい。'
       end
     end
   end
