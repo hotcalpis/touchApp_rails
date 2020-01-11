@@ -1,7 +1,7 @@
 %p
   = link_to user_path comment.user do
     = display_user_avatar(comment.user, 40, 40)
-  = link_to user_path comment.user do  ### なぜか複数行リンクにできない
+  = link_to user_path comment.user do
     = comment.user.name
 %p
   = comment.content
