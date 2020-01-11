@@ -1,4 +1,4 @@
-%h2 Change your password
+%h2 パスワード再設定
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
   = f.hidden_field :reset_password_token
@@ -7,7 +7,7 @@
     %br/
     - if @minimum_password_length
       %em
-        (#{@minimum_password_length} characters minimum)
+        (#{@minimum_password_length}文字以上)
       %br/
     = f.password_field :password, autofocus: true, autocomplete: "new-password"
   .field
@@ -15,5 +15,5 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
-    = f.submit "Change my password"
+    = f.submit "パスワード再設定"
 = render "users/shared/links"
