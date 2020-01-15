@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       #add
       t.string :name, null: false, default: ''
-      t.text :profile, default: ''
+      t.text :profile
 
 
       ## Recoverable
