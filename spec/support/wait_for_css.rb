@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WaitForCss
   # cssが表示されるまで待つ
   def wait_for_css_appear(selector, wait_time = Capybara.default_max_wait_time)

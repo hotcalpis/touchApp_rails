@@ -77,13 +77,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-
-
   # suite: RSpecコマンドでテストを実行する単位
   # all:  各テストファイル(xxx_spec.rb)単位
   # each: 各テストケース(it)単位
   config.before(:suite) do
-    DatabaseCleaner.clean_with :truncation  # テスト開始時にDBをクリーンにする
+    DatabaseCleaner.clean_with :truncation # テスト開始時にDBをクリーンにする
   end
 
   # js以外のテスト時は通常のtransactionでデータを削除する
@@ -111,7 +109,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
-  #config.include SystemSpecHelper, type: :system
+  # config.include SystemSpecHelper, type: :system
 
   # ajaxのテスト用
   config.include WaitForAjax, type: :system
@@ -120,7 +118,7 @@ RSpec.configure do |config|
   # system spec用のブラウザ設定
   config.before(:each) do |example|
     if example.metadata[:type] == :system
-      driven_by :selenium, using: :headless_chrome, options: { args: ["headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage"] }
+      driven_by :selenium, using: :headless_chrome, options: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
     end
   end
 end

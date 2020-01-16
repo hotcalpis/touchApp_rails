@@ -4,18 +4,22 @@
 #
 # Table name: posts
 #
-#  id          :integer          not null, primary key
-#  content     :text             not null
+#  id          :bigint           not null, primary key
+#  content     :text(65535)      not null
 #  likes_count :integer          default(0)
-#  title       :text             not null
+#  title       :text(65535)      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer          not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #
 #  index_posts_on_user_id                 (user_id)
 #  index_posts_on_user_id_and_created_at  (user_id,created_at)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 require 'rails_helper'
@@ -58,6 +62,7 @@ RSpec.describe Post, type: :model do
   describe 'default scope' do
     it 'order should be most recent first' do
       first_created = create(:post)
+      sleep 1
       second_created = create(:post)
       expect(second_created).to eq Post.first
     end
@@ -75,7 +80,7 @@ RSpec.describe Post, type: :model do
       post = create(:post, :have_likes)
       expect(post.likes.length).to eq 5
     end
-    
+
     it 'can have many comments' do
       user = create(:user, :have_comments)
       expect(user.comments.length).to eq 5

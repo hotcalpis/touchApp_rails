@@ -1,4 +1,9 @@
 %h3.heading touchAppは作成したアプリケーションを紹介するための記事投稿サイトです
+
+- unless user_signed_in?
+  .testuser_login_button
+    = link_to("テストユーザーでログイン", '/testlogin')
+
 %p.introduction 投稿一覧
 
 = render 'shared/posts_list', posts: @posts

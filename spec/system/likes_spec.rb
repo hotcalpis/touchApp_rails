@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Likes', type: :system do
@@ -16,15 +18,15 @@ RSpec.describe 'Likes', type: :system do
       sign_in user
       post = create(:post)
       visit post_path(post)
-      
+
       expect(post.likes_count).to eq 0
       find('.like_button').click
-      #wait_for_ajax(5)
-      sleep 5
+      # wait_for_ajax(5)
+      sleep 2
       expect(post.reload.likes_count).to eq 1
       find('.unlike_button').click
-      #wait_for_ajax(5)
-      sleep 5
+      # wait_for_ajax(5)
+      sleep 2
       expect(post.reload.likes_count).to eq 0
     end
   end

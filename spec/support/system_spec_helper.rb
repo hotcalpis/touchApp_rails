@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 ## frozen_string_literal: true
 
 module SystemSpecHelper
-
   include Warden::Test::Helpers
 
   def self.included(base)

@@ -7,8 +7,6 @@ ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.4.1'
-# Use Puma as the app server
-#gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
- gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -37,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'annotate'
+gem 'aws-sdk-s3', require: false
 gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
@@ -46,19 +45,17 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'mysql2'
 gem 'rails_admin'
 gem 'redcarpet'
 gem 'rubocop', require: false
-gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
-  gem 'pg'
-  gem 'rspec-rails'
-  # Use Puma as the app server
   gem 'puma', '~> 3.11'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -76,16 +73,13 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  # gem 'chromedriver-helper'
 
-  gem 'webdrivers'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
-#  gem 'capybara-webkit'
+  gem 'webdrivers'
 end
 
 group :production do
-  gem 'mysql2'
 end
 
 group :production, :staging do

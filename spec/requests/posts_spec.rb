@@ -10,7 +10,6 @@ RSpec.describe 'Posts', type: :request do
 
   before { user.confirm }
   before { other_user.confirm }
-  before { user.posts.create(title: 'a', content: 'a') }
 
   describe 'ゲストの時' do
     context 'GET #new' do
@@ -26,20 +25,23 @@ RSpec.describe 'Posts', type: :request do
       end
     end
     context 'GET #edit' do
-      subject { get edit_post_path(1) }
       it 'signinページにリダイレクトされること' do
-        is_expected.to redirect_to new_user_session_url
+        post = user.posts.create(title: 'a', content: 'a')
+        get edit_post_path(post)
+        expect(response).to redirect_to new_user_session_url
       end
     end
     context 'PATCH #update' do
       it 'signinページにリダイレクトされること' do
-        patch post_path(1), params: { post: post_params }
+        post = user.posts.create(title: 'a', content: 'a')
+        patch post_path(post), params: { post: post_params }
         expect(response).to redirect_to new_user_session_url
       end
     end
     context 'DELETE #destroy' do
       it 'signinページにリダイレクトされること' do
-        delete post_path(1), params: { post: post_params }
+        post = user.posts.create(title: 'a', content: 'a')
+        delete post_path(post), params: { post: post_params }
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -86,33 +88,36 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'GET #edit' do
-      subject { get edit_post_path(1) }
       it 'リクエストが成功すること' do
-        is_expected.to eq 200
+        post = user.posts.create(title: 'a', content: 'a')
+        get edit_post_path(post)
+        expect(response.status).to eq 200
       end
     end
 
     describe 'PATCH #update' do
       context 'パラメータが妥当な場合' do
         it 'updateが成功すること' do
-          patch post_path(1), params: { post: { title: 'not_blank', content: 'Updated!' } }
-          get post_path(1)
+          post = user.posts.create(title: 'a', content: 'a')
+          patch post_path(post), params: { post: { title: 'not_blank', content: 'Updated!' } }
+          get post_path(post)
           expect(response.body).to include 'Updated!'
         end
 
         context 'パラメータが不正な場合' do
           it 'updateが失敗すること' do
-            patch post_path(1), params: { post: { title: '', content: 'Updated!' } }
-            get post_path(1)
+            post = user.posts.create(title: 'a', content: 'a')
+            patch post_path(post), params: { post: { title: '', content: 'Updated!' } }
+            get post_path(post)
             expect(response.body).to_not include 'Updated!'
           end
         end
       end
 
       describe 'DELETE #destroy' do
-        subject { delete post_path(1) }
         it 'deleteが成功すること' do
-          expect { subject }.to change { Post.count }.by(-1)
+          post = user.posts.create(title: 'a', content: 'a')
+          expect { delete post_path(post) }.to change { Post.count }.by(-1)
         end
       end
     end
@@ -124,31 +129,35 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'GET #edit' do
-      subject { get edit_post_path(1) }
       it 'リダイレクトされること' do
-        is_expected.to redirect_to root_url
+        post = user.posts.create(title: 'a', content: 'a')
+        get edit_post_path(post)
+        expect(response).to redirect_to root_url
       end
     end
 
     describe 'PATCH #update' do
       context 'パラメータが妥当な場合' do
         it 'リダイレクトされること' do
-          patch post_path(1), params: { post: { title: 'not_blank', content: 'Updated!' } }
+          post = user.posts.create(title: 'a', content: 'a')
+          patch post_path(post), params: { post: { title: 'not_blank', content: 'Updated!' } }
           expect(response).to redirect_to root_url
         end
 
         context 'パラメータが不正な場合' do
           it 'リダイレクトされること' do
-            patch post_path(1), params: { post: { title: '', content: 'Updated!' } }
+            post = user.posts.create(title: 'a', content: 'a')
+            patch post_path(post), params: { post: { title: '', content: 'Updated!' } }
             expect(response).to redirect_to root_url
           end
         end
       end
 
       describe 'DELETE #destroy' do
-        subject { delete post_path(1) }
         it 'リダイレクトされること' do
-          is_expected.to redirect_to root_url
+          post = user.posts.create(title: 'a', content: 'a')
+          delete post_path(post)
+          expect(response).to redirect_to root_url
         end
       end
     end

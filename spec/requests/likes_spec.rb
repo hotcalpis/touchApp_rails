@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Likes", type: :request do
+RSpec.describe 'Likes', type: :request do
   context 'guest not signed in' do
     it 'likes#create should redirect to sign_in page' do
       post = create(:post)
@@ -15,7 +17,7 @@ RSpec.describe "Likes", type: :request do
       user.confirm
       sign_in user
       post = create(:post)
-    
+
       expect(post.likes_count).to eq 0
 
       post post_likes_path(post)
@@ -24,11 +26,11 @@ RSpec.describe "Likes", type: :request do
       post post_likes_path(post)
       expect(post.reload.likes_count).to eq 1
 
-      delete post_like_path(post_id: post.id, id: 1 )
+      delete post_like_path(post_id: post.id, id: 1)
       expect(post.reload.likes_count).to eq 0
 
-      expect{ delete post_like_path(post_id: post.id, id: 1 ) }.to raise_error NoMethodError
-      
+      expect { delete post_like_path(post_id: post.id, id: 1) }.to raise_error NoMethodError
+
       post post_likes_path(post)
       expect(post.reload.likes_count).to eq 1
     end

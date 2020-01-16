@@ -3,10 +3,6 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
-#           comments_create GET    /comments/create(.:format)                                                               comments#create
-#          comments_destroy GET    /comments/destroy(.:format)                                                              comments#destroy
-#              likes_create GET    /likes/create(.:format)                                                                  likes#create
-#             likes_destroy GET    /likes/destroy(.:format)                                                                 likes#destroy
 #               rails_admin        /admin                                                                                   RailsAdmin::Engine
 #          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
@@ -28,6 +24,7 @@
 #                           POST   /users/confirmation(.:format)                                                            devise/confirmations#create
 #                      root GET    /                                                                                        posts#index
 #                      user GET    /users/:id(.:format)                                                                     users#show
+#                 testlogin GET    /testlogin(.:format)                                                                     users#testlogin
 #                post_likes POST   /posts/:post_id/likes(.:format)                                                          likes#create
 #                 post_like DELETE /posts/:post_id/likes/:id(.:format)                                                      likes#destroy
 #             post_comments POST   /posts/:post_id/comments(.:format)                                                       comments#create
@@ -45,7 +42,7 @@
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
 # update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
-# 
+#
 # Routes for RailsAdmin::Engine:
 #   dashboard GET         /                                      rails_admin/main#dashboard
 #       index GET|POST    /:model_name(.:format)                 rails_admin/main#index
@@ -59,19 +56,16 @@
 # show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
 
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/destroy'
-  get 'likes/create'
-  get 'likes/destroy'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'posts#index'
   resources :users, only: [:show]
+  get 'testlogin' => 'users#testlogin'
 
   resources :posts do
-    resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[create destroy]
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
 
@@ -15,5 +17,4 @@ class LikesController < ApplicationController
     @post = Post.find(params[:post_id])
     @likes = @post.likes
   end
-
 end
