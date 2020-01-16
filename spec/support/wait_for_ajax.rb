@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WaitForAjax
   # ajaxが完了するまで待つ
   def wait_for_ajax(wait_time)

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module UsersHelper
-
   # def display_user_avatar(user, size)
   #   link_to user_path(user) do
   #     if user.avatar.attached?

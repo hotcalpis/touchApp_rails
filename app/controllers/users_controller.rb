@@ -7,4 +7,11 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).per(8)
     @like_posts = @user.liked_posts.page(params[:page]).per(8)
   end
+
+  def testlogin
+    user = User.find_by(email: 'testuser@testuser.testuser')
+    sign_in user
+    flash[:success] = 'テストユーザーでログインしました。'
+    redirect_to root_url
+  end
 end

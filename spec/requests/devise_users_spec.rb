@@ -22,7 +22,7 @@ RSpec.describe 'DeviseUsers', type: :request do
                           current_password: 'testuser')
   end
 
-  before { user.confirm } # 注意
+  before { user.confirm } 
 
   describe 'GET #new' do
     subject { get new_user_registration_path }
@@ -178,18 +178,6 @@ RSpec.describe 'DeviseUsers', type: :request do
         expect { subject }.not_to change { User.count }
       end
     end
-  end
-
-  describe 'GET passwords#new' do
-    # subject { get new_user_password_path }
-  end
-
-  describe 'GET passwords#edit' do
-    # subject { get edit_user_password_path }
-  end
-
-  describe 'PATCH passwords#update' do
-    # subject { patch user_password_path, params: { user: { email: user.email  } } }
   end
 
   describe 'GET /admin' do
