@@ -74,7 +74,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
 
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'webdrivers'
 end
