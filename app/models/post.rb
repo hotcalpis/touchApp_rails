@@ -37,4 +37,9 @@ class Post < ApplicationRecord
   def liked_by?(user)
     user.likes.find_by(post_id: id)
   end
+
+  def self.search(search_word)
+    return Post.all unless search_word
+    Post.where(['content LIKE ?', "%#{search_word}%"])
+  end
 end
