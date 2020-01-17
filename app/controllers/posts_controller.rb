@@ -45,6 +45,10 @@ class PostsController < ApplicationController
     redirect_to user_url current_user
   end
 
+  def search
+    @posts = Post.search(params[:search]).includes([:user, user: :avatar_attachment]).page(params[:page]).per(8)
+  end
+
   private
 
   def correct_user
