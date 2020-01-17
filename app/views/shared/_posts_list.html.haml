@@ -5,6 +5,12 @@
         = post.title
       = image_tag('like_icon_green.svg', size: '20x20')
       = post.likes_count
+      = image_tag('comment_icon.svg', size: '20x20')
+      = post.comments_count
       .date
-        = l(post.created_at, format: :long)
+        = l(post.created_at, format: :long2)
+      .auther
+        = post.user.name
+      .container_right
+        = display_user_avatar(post.user, 25, 25)
   = paginate posts
