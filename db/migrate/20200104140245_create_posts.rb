@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :title, null: false
       t.text :content, null: false
       t.integer :likes_count, default: 0
+      t.integer :comments_count, default: 0
       t.timestamps null: false
     end
     add_index :posts, %i[user_id created_at]
