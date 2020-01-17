@@ -3,6 +3,8 @@
     = display_user_avatar(comment.user, 40, 40)
   = link_to user_path comment.user do
     = comment.user.name
+  .date
+    = l(comment.created_at, format: :long)
 %p
   = comment.content
   - if comment.user == current_user
