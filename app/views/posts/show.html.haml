@@ -10,7 +10,11 @@
 = render 'likes/like', post: @post, like: @like
 
 .post_content  
+  %p.date
+    = l(@post.created_at, format: :long)
   = markdown_to_html(@post.content)
+  
+
 
 - if current_user 
   = form_for [@post, @comment] do |f|
