@@ -1,10 +1,11 @@
-= display_user_avatar(@user, 100, 100)
-%p
-  = @user.name
-%p
+.icon_and_name
+  = display_user_avatar(@user, 100, 100)
+  %p 
+    = @user.name
+%p.profile
   = @user.profile
 - if current_user == @user 
-  = link_to '編集', edit_user_registration_path
+  = link_to 'ユーザー情報編集', edit_user_registration_path
 
 %ul.nav.nav-tabs
   %li.nav-item
