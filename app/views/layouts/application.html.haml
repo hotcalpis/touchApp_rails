@@ -9,11 +9,13 @@
     %script(src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js")
 
   %body
-    = render 'layouts/header'
-    - flash.each do |message_type, message|
-      = content_tag(:div, message, class: "alert alert-#{message_type}")
-    = yield
-    = render 'layouts/footer'
+    #wrapper
+      = render 'layouts/header'
+      .container.text-center
+        - flash.each do |message_type, message|
+          = content_tag(:div, message, class: "alert alert-#{message_type}")
+      = yield
+      = render 'layouts/footer'
 
 %script
   $(function(){
