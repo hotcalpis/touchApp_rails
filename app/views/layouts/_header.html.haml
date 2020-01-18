@@ -1,24 +1,23 @@
-%header
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-2
   .container
-    = link_to "touchApp", root_url, id: "logo"
-    
-  .search_form.form
-    = form_tag search_posts_path, method: :get do
-      = text_field_tag :search
-      = image_submit_tag 'search_icon.svg', class: 'search_button'
-    
-    %nav
-      %ul.nav.navbar-right.navbar-nav
-        - if user_signed_in?
-          %li<
-            = link_to "新規投稿", new_post_url
-          %li<
-            = link_to "ログアウト", destroy_user_session_url, method: :DELETE
-          %li<
-            = link_to "マイページ", user_path(current_user)
-        - else
-          %li<
-            = link_to "ログイン", new_user_session_url
-          %li<
-            = link_to "新規登録", new_user_registration_url
-        
+    = link_to "touchApp", root_url, class: "navbar-brand"
+
+    #navbarNav.collapse.navbar-collapse
+    %ul.nav.navbar-right.navbar-nav
+      = form_tag search_posts_path, method: :get, class: "form-inline mr-md-4" do
+        = text_field_tag :search, '', class: 'form-control mr-md-2'
+        = image_submit_tag 'search_icon.svg', class: 'search_button'
+
+      - if user_signed_in?
+        %li.nav-item
+          = link_to("新規投稿", new_post_url, class: "nav-link")
+        %li.nav-item
+          = link_to("ログアウト", destroy_user_session_url, method: :DELETE, class: "nav-link")
+        %li.nav-item
+          = link_to("マイページ", user_path(current_user), class: "nav-link")
+      - else
+        %li.nav-item
+          = link_to("ログイン", new_user_session_url, class: "nav-link")
+        %li.nav-item
+          = link_to("新規登録", new_user_registration_url, class: "nav-link")
+      

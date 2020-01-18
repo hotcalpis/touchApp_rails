@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ */
+@import 'bootstrap';
+
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container_right {
+	float: right;
+}
+
+.counter {
+	text-decoration: none;
+}
+
+.date {
+	float: right;
+}
+
+/*flash*/
+
+.alert-notice {
+  background-color: rgba(116, 208, 236, 0.315);
+}
+
+/*header*/
+
+.search_button {
+  width: 25px;
+  height: 25px;
+}
+
+/*footer*/
+
+footer {
+  margin-top: auto;
+  background-color: rgb(33,37,41);
+}
+
+/*post_index*/
+
+.heading {
+	text-align: center;
+}
+
+.introduction {
+	text-align: center;
+}
+
+/*posts#show*/
+
+.post_title {
+	text-align: center;
+	padding: 0 80px;
+}
+
+.auther {
+	float: right;
+	margin-right: 60px;
+}
+
+.post_content {
+	margin:80px;
+	font-size: 1.2em;
+}
+
+/*users*/
+
+.avatar {
+	border-radius: 10px;
+}
+
+/*users#show*/
+
+.icon_and_name {
+	margin: 0 auto;
+	text-align: center;
+}
