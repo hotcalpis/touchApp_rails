@@ -1,9 +1,12 @@
-%h3.heading touchAppは作成したアプリケーションを紹介するための記事投稿サイトです
+%h3.text-center.mt-md-2 
+  touchAppは作成した
+  %span.addition_attr(aria-label="小さな開発成果も歓迎します！") アプリケーション
+  を紹介するための記事投稿サイトです
 
 - unless user_signed_in?
-  .testuser_login_button
-    = link_to("テストユーザーでログイン", testlogin_users_path)
+  .text-center
+    = button_to("テストユーザーでログイン", testlogin_users_path, class: 'btn btn-primary')
 
-%p.introduction 投稿一覧
+%p.text-center.mt-md-3 投稿一覧
 
 = render 'shared/posts_list', posts: @posts
