@@ -2,15 +2,15 @@
   - posts.each do |post|
     = link_to(post, class: 'list-group-item') do
       %h4
+        = display_user_avatar(post.user, 35, 35)
         = post.title
-      = image_tag('like_icon_green.svg', size: '20x20')
-      = post.likes_count
-      = image_tag('comment_icon.svg', size: '20x20')
-      = post.comments_count
-      .date
-        = l(post.created_at, format: :long2)
-      .auther
+      .float-left
         = post.user.name
-      .container_right
-        = display_user_avatar(post.user, 25, 25)
+      .float-right
+        = l(post.created_at, format: :long2)
+      .float-right.mr-md-3
+        = image_tag('like_icon_green.svg', size: '20x20')
+        = post.likes_count
+        = image_tag('comment_icon.svg', size: '20x20')
+        = post.comments_count
   = paginate posts
