@@ -5,7 +5,7 @@
     #navbarNav.collapse.navbar-collapse
     %ul.nav.navbar-right.navbar-nav
       = form_tag search_posts_path, method: :get, class: "form-inline mr-md-4" do
-        = text_field_tag :search, '', class: 'form-control mr-md-2'
+        = text_field_tag :search, '', class: 'form-control form-control-sm mr-md-2'
         = image_submit_tag 'search_icon.svg', class: 'search_button'
 
       - if user_signed_in?
