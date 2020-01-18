@@ -1,12 +1,12 @@
 .container
-  .mx-auto
+  .text-center
     = display_user_avatar(@user, 100, 100)
   %p.text-center 
     = @user.name
-  %p.profile
+  %p.text-center
     = @user.profile
   - if current_user == @user 
-    = link_to 'ユーザー情報編集', edit_user_registration_path
+    = button_to 'ユーザー情報編集', edit_user_registration_path, method: :get, class: 'btn btn-primary float-right'
 
   %ul.nav.nav-tabs
     %li.nav-item

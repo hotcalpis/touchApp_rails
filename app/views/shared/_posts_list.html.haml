@@ -1,6 +1,6 @@
 .list-group
   - posts.each do |post|
-    = link_to(post, class: 'list-group-item') do
+    = link_to(post, class: 'list-group-item border-left-0 border-right-0 pt-md-4') do
       %h4
         = display_user_avatar(post.user, 35, 35)
         = post.title
