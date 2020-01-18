@@ -23,14 +23,6 @@
 	float: right;
 }
 
-.counter {
-	text-decoration: none;
-}
-
-.date {
-	float: right;
-}
-
 /*flash*/
 
 .alert-notice {
@@ -83,25 +75,22 @@ footer {
 	padding: 0 80px;
 }
 
-.auther {
-	float: right;
-	margin-right: 60px;
-}
-
 .post_content {
 	margin:80px;
 	font-size: 1.2em;
 }
 
+/*_posts_list*/
+
+.list-group-item {
+  color: black;
+  &:hover {
+    color: black;
+  }
+}
+
 /*users*/
 
 .avatar {
-	border-radius: 10px;
-}
-
-/*users#show*/
-
-.icon_and_name {
-	margin: 0 auto;
-	text-align: center;
+  border-radius: 10px;
 }
