@@ -1,31 +1,28 @@
-= form_for post do |f|
+.container 
+  = form_for post do |f|
 
-  -if f.object.errors.any?
-    #error_explanation
-      .alert.alert-danger
-        The form contains error.
-    %ul
-      - f.object.errors.full_messages.each do |msg|
-        %li
-          = msg
-
-
-  = f.label :title
-  = f.text_field :title, class: 'form-control'
-
-  = f.label :content
-  = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
-    
-  = f.submit 'submit',  class: 'btn btn-primary'
-
-- if local_assigns[:edit_flag].present?
-  %P
-    - if current_user == post.user
-      #{button_to "post delete", post_path, data: { confirm: "Are you sure?" }, method: :delete}
+    -if f.object.errors.any?
+      #error_explanation
+        .alert.alert-danger
+          The form contains error.
+      %ul
+        - f.object.errors.full_messages.each do |msg|
+          %li
+            = msg
 
 
-%p contentフォームはMarkdown記法です
-%p 見出し(h1,h2...)の際は#の後に空白を置いて下さい
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+
+    = f.label :content, 'Content (Markdown)'
+    = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
+      
+    = f.submit 'submit',  class: 'btn btn-primary float-right mb-md-2'
+
+  - if local_assigns[:edit_flag].present?
+    %P
+      - if current_user == post.user
+        #{button_to "post delete", post_path, data: { confirm: "Are you sure?" }, method: :delete}
 
 %script
   const mde = new SimpleMDE({
