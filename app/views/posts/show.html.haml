@@ -1,26 +1,31 @@
-%h1.post_title
-  = @post.title
-= display_user_avatar(@post.user, 55, 55)
-.auther
-  = link_to @post.user.name, user_url(@post.user)
-- if current_user == @post.user
-  .btn
-    = link_to "編集", edit_post_path(@post)
+.container.mt-md-2
+  %h2.m-md-4
+    = @post.title
 
-= render 'likes/like', post: @post, like: @like
+  .m-md-4.overflow-hidden
+    .float-left
+      = link_to user_url(@post.user) do
+        = display_user_avatar(@post.user, 55, 55)
+    .float-left.ml-md-2.mr-md-4
+      = link_to @post.user.name, user_url(@post.user)
+      %p 
+        = l(@post.created_at, format: :long)
 
-.post_content  
-  %p.date
-    = l(@post.created_at, format: :long)
-  = markdown_to_html(@post.content)
+    - if current_user == @post.user
+      = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
+
+    .float-right.mr-md-3
+      = render 'likes/like', post: @post, like: @like
+
+  .content-wrapper
+    = markdown_to_html(@post.content)
+    
+  - if user_signed_in? 
+    = form_for [@post, @comment] do |f|
+      = f.label :content, 'Comment', class: 'mt-md-5'
+      = f.text_area :content, class: 'form-control', rows: 4
+
+      = f.submit '投稿',  class: 'btn btn-primary float-right mt-md-2 mb-md-4'
   
-
-
-- if current_user 
-  = form_for [@post, @comment] do |f|
-    = f.label :content
-    = f.text_area :content, class: 'form-control', rows: 5
-
-    = f.submit 'submit',  class: 'btn btn-primary'
-
-= render @comments
+  .mt-md-5.pt-md-1
+    = render @comments
