@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require 'rouge/plugins/redcarpet'
+
+class HTML < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+end
+
 module MarkdownHelper
   def markdown_to_html(text)
     unless @markdown
@@ -15,7 +21,8 @@ module MarkdownHelper
         autolink: true,
         superscript: true
       }
-      renderer = Redcarpet::Render::HTML.new(options)
+      #renderer = Redcarpet::Render::HTML.new(options)
+      renderer = HTML.new(options)
       @markdown = Redcarpet::Markdown.new(renderer, extensions)
     end
 

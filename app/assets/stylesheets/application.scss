@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  */
 @import 'bootstrap';
+@import 'rouge';
 
 
 body {
@@ -70,17 +71,20 @@ footer {
 
 /*posts#show*/
 
-.post_title {
-	text-align: center;
-	padding: 0 80px;
-}
-
-.post_content {
-	margin:80px;
-	font-size: 1.2em;
+.content-wrapper {
+  padding: 15px;
+  border-radius: 12px;
+  background-color: white;
+  margin: 15px;
 }
 
 /*_posts_list*/
+
+.list-group {
+  :hover {
+    opacity: 0.8;
+  }
+}
 
 .list-group-item {
   color: black;
