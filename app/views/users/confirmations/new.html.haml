@@ -1,10 +1,11 @@
-%h2 認証メール再発行
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit "メール発行"
-= render "users/shared/links"
+.card.col-md-5.mx-auto.mt-5.mb-3
+  .card-body
+    %h2.mt-1.mb-3 認証メール再発行
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .form-group
+        = f.label :email, 'メールアドレス', class: 'form-label'
+        = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
+      .actions
+        = f.submit "メール発行", class: 'btn btn-primary btn-block'
+    = render "users/shared/links"

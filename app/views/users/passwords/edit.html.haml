@@ -1,19 +1,18 @@
-%h2 パスワード再設定
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length}文字以上)
-      %br/
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "パスワード再設定"
-= render "users/shared/links"
+.card.col-md-5.mx-auto.mt-5.mb-3
+  .card-body
+    %h2.mt-1.mb-3 パスワード再設定
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      = f.hidden_field :reset_password_token
+      .form-group
+        = f.label :password, "新しいパスワード", class: 'form-label'
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length}文字以上)
+        = f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control'
+      .form-group
+        = f.label :password_confirmation, "新しいパスワード確認"
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+      .actions
+        = f.submit "パスワード再設定", class: 'btn btn-primary btn-block'
+    = render "users/shared/links"
