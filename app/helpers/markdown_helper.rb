@@ -21,7 +21,7 @@ module MarkdownHelper
         autolink: true,
         superscript: true
       }
-      #renderer = Redcarpet::Render::HTML.new(options)
+      # renderer = Redcarpet::Render::HTML.new(options)
       renderer = HTML.new(options)
       @markdown = Redcarpet::Markdown.new(renderer, extensions)
     end
