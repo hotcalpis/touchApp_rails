@@ -33,12 +33,12 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'meta-tags'
 gem 'mysql2'
 gem 'rails_admin'
 gem 'redcarpet'
 gem 'rouge'
 gem 'rubocop', require: false
-gem 'meta-tags'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
