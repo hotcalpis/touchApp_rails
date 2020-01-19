@@ -22,7 +22,7 @@ RSpec.describe 'DeviseUsers', type: :request do
                           current_password: 'testuser')
   end
 
-  before { user.confirm } 
+  before { user.confirm }
 
   describe 'GET #new' do
     subject { get new_user_registration_path }
