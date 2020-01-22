@@ -7,16 +7,15 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
   timeout: 5000
+  host: <%= ENV.fetch('DB_HOST') { 'localhost' } %>
 
 development:
   <<: *default
   database: touchapp_development
-  pool: 5
   username: root
-  password: <%= ENV['MYSQL_PASSWORD'] %>
-  host: localhost
+  password: 'Password1+'
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,15 +24,12 @@ test:
   <<: *default
   database: touchapp_test
   username: root
-  password: <%= ENV['MYSQL_PASSWORD'] %>
-  host: localhost
+  password: 'Password1+'
 
 production:
   <<: *default
   database: touchapp_production
-  pool: 5
   reconnect: false
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   socket: /tmp/mysql.sock
-  host: <%= ENV['DB_HOST'] %>
