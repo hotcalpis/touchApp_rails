@@ -32,6 +32,12 @@
       .form-group
         = f.label :profile, 'プロフィール', class: 'form-label'
         = f.text_area :profile, rows: "4", cols: "50", class: 'form-control'
+      .form-group
+        = f.label :github, 'Githubリンク', class: 'form-label'
+        = f.text_field :github, class: 'form-control'
+      .form-group
+        = f.label :twitter, 'Twitterリンク', class: 'form-label'
+        = f.text_field :twitter, class: 'form-control'
       .input-group.overflow-hidden
         = f.file_field :avatar, class: 'custom-file-input'
         = f.label :avatar, 'アイコン選択', class: 'custom-file-label', for: "customFile", 'data-browse' => "参照"

@@ -18,6 +18,10 @@ body {
   background-color: #f8f7f7;
 }
 
+p {
+  overflow-wrap: break-word;
+}
+
 #wrapper {
   display: flex;
   flex-direction: column;
