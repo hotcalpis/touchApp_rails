@@ -10,6 +10,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # add
       t.string :name, null: false, default: ''
       t.text :profile
+      t.string :github
+      t.string :twitter
 
       ## Recoverable
       t.string   :reset_password_token
