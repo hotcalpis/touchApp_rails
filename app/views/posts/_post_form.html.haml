@@ -1,29 +1,31 @@
-.container.mt-md-2
-  = form_for post do |f|
+.container.mt-2
+  .row
+    .col-sm-12
+      = form_for post do |f|
 
-    -if f.object.errors.any?
-      #error_explanation
-        .alert.alert-danger
-          入力内容に不足があります
-      %ul
-        - f.object.errors.full_messages.each do |msg|
-          %li
-            = msg
+        -if f.object.errors.any?
+          #error_explanation
+            .alert.alert-danger
+              入力内容に不足があります
+          %ul
+            - f.object.errors.full_messages.each do |msg|
+              %li
+                = msg
 
 
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
 
-    = f.label :content, 'Content (Markdown)'
-    = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
-      
-    = f.submit '投稿',  class: 'btn btn-primary float-right mb-md-4'
+        = f.label :content, 'Content (Markdown)'
+        = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
+          
+        = f.submit '投稿',  class: 'btn btn-primary float-right mb-4'
 
-  - if local_assigns[:edit_flag].present?
-    - if current_user == post.user
-      #{button_to "記事削除", post_path, data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-danger float-left mb-md-4'}
+      - if local_assigns[:edit_flag].present?
+        - if current_user == post.user
+          #{button_to "記事削除", post_path, data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-danger float-left mb-4'}
 
-%script
-  const mde = new SimpleMDE({
-  element: document.getElementById("simplemde")
-  });
+    %script
+      const mde = new SimpleMDE({
+      element: document.getElementById("simplemde")
+      });

@@ -1,4 +1,4 @@
-%h3.text-center.mt-md-2 
+%h3.text-center.mt-2 
   touchAppは作成した
   %span.addition_text(aria-label="小さな開発成果も歓迎します！") アプリケーション
   を紹介するための記事投稿サイトです
@@ -10,4 +10,6 @@
 %p.text-center.mt-md-5 投稿一覧
 
 .container
-  = render 'shared/posts_list', posts: @posts
+  .row
+    .col-sm-12
+      = render 'shared/posts_list', posts: @posts
