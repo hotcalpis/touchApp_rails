@@ -1,33 +1,35 @@
 - set_meta_tags site: @post.title, separator: '-'
 
-.container.mt-md-2
-  %h2.m-md-4
-    = @post.title
+.container.mt-2
+  .row
+    .col-sm-12
+      %h2.m-4
+        = @post.title
 
-  .m-md-4.overflow-hidden
-    .float-left
-      = link_to user_url(@post.user) do
-        = display_user_avatar(@post.user, 55, 55)
-    .float-left.ml-md-2.mr-md-4
-      = link_to @post.user.name, user_url(@post.user)
-      %p 
-        = l(@post.created_at, format: :long)
+      .m-4.overflow-hidden
+        .float-left
+          = link_to user_url(@post.user) do
+            = display_user_avatar(@post.user, 55, 55)
+        .float-left.ml-2.mr-4
+          = link_to @post.user.name, user_url(@post.user)
+          %p 
+            = l(@post.created_at, format: :long)
 
-    - if current_user == @post.user
-      = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
+        - if current_user == @post.user
+          = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
 
-    .float-right.mr-md-3
-      = render 'likes/like', post: @post, like: @like
+        .float-right.mr-3
+          = render 'likes/like', post: @post, like: @like
 
-  .content-wrapper
-    = markdown_to_html(@post.content)
-    
-  - if user_signed_in? 
-    = form_for [@post, @comment] do |f|
-      = f.label :content, 'Comment', class: 'mt-md-5'
-      = f.text_area :content, class: 'form-control', rows: 4
+      .content-wrapper
+        = markdown_to_html(@post.content)
+        
+      - if user_signed_in? 
+        = form_for [@post, @comment] do |f|
+          = f.label :content, 'Comment', class: 'mt-5'
+          = f.text_area :content, class: 'form-control', rows: 4
 
-      = f.submit '投稿',  class: 'btn btn-primary float-right mt-md-2 mb-md-4'
-  
-  .mt-md-5.pt-md-1
-    = render @comments
+          = f.submit '投稿',  class: 'btn btn-primary float-right mt-2 mb-4'
+      
+      .mt-5.pt-1
+        = render @comments

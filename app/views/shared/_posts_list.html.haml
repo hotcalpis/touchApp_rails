@@ -1,6 +1,6 @@
 .list-group
   - posts.each do |post|
-    = link_to(post, class: 'list-group-item border-left-0 border-right-0 pt-md-4') do
+    = link_to(post, class: 'list-group-item border-left-0 border-right-0 pt-4') do
       %h4
         = display_user_avatar(post.user, 35, 35)
         = post.title
@@ -8,7 +8,7 @@
         = post.user.name
       .float-right
         = l(post.created_at, format: :long2)
-      .float-right.mr-md-3
+      .float-right.mr-3
         = image_tag('like_icon_green.svg', size: '20x20')
         = post.likes_count
         = image_tag('comment_icon.svg', size: '20x20')
