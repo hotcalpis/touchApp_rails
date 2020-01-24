@@ -1,3 +1,5 @@
 .container
-  %h3.text-center.mt-md-3.mb-md-2 検索結果：「#{params[:search]}」
-  = render 'shared/posts_list', posts: @posts  
+  .row
+    .col-sm-12
+      %h3.text-center.mt-md-3.mb-md-2 検索結果：「#{params[:search]}」
+      = render 'shared/posts_list', posts: @posts  
