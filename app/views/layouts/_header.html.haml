@@ -2,22 +2,26 @@
   .container
     = link_to "touchApp", root_url, class: "navbar-brand"
 
-    #navbarNav.collapse.navbar-collapse
     %ul.nav.navbar-right.navbar-nav
-      = form_tag search_posts_path, method: :get, class: "form-inline mr-md-4" do
-        = text_field_tag :search, '', class: 'form-control form-control-sm mr-md-2'
-        = image_submit_tag 'search_icon.svg', class: 'search_button'
+      %button.navbar-toggler{type: "button", "data-toggle": "collapse", "data-target": "#navbars01", "aria-controls": "navbars01", "aria-expanded": "false", "aria-label": "Toggle navigation"}
+        %span.navbar-toggler-icon
+      #navbars01.collapse.navbar-collapse
+                                                                  
+        - if user_signed_in?
+          %li.nav-item
+            = link_to("新規投稿", new_post_url, class: "nav-link")
+          %li.nav-item  
+            = link_to("ログアウト", destroy_user_session_url, method: :DELETE, class: "nav-link")
+          %li.nav-item
+            = link_to("マイページ", user_path(current_user), class: "nav-link mr-4")
+        - else
+          %li.nav-item
+            = link_to("ログイン", new_user_session_url, class: "nav-link")
+          %li.nav-item
+            = link_to("新規登録", new_user_registration_url, class: "nav-link mr-4")
 
-      - if user_signed_in?
         %li.nav-item
-          = link_to("新規投稿", new_post_url, class: "nav-link")
-        %li.nav-item
-          = link_to("ログアウト", destroy_user_session_url, method: :DELETE, class: "nav-link")
-        %li.nav-item
-          = link_to("マイページ", user_path(current_user), class: "nav-link")
-      - else
-        %li.nav-item
-          = link_to("ログイン", new_user_session_url, class: "nav-link")
-        %li.nav-item
-          = link_to("新規登録", new_user_registration_url, class: "nav-link")
-      
+          = form_tag search_posts_path, method: :get, class: "form-inline" do
+            %div{style: "display:inline-flex"}
+              = text_field_tag :search, '', class: 'form-control form-control-sm mr-2'
+              = image_submit_tag 'search_icon.svg', class: 'search_button'
