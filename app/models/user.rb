@@ -41,8 +41,8 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, 
-         :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i(github)
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i[github]
   validates :name, presence: true, length: { maximum: 50 }
   validates :profile, length: { maximum: 400 }
   validates :github, length: { maximum: 255 }
@@ -54,17 +54,14 @@ class User < ApplicationRecord
     SecureRandom.uuid
   end
 
-  def self.find_for_github_oauth(auth, signed_in_resource=nil)
+  def self.find_for_github_oauth(auth, _signed_in_resource = nil)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
 
-    unless user
-      user = User.new(provider: auth.provider,
-                      uid:      auth.uid,
-                      name:     auth.info.name,
-                      email:    auth.info.email,
-                      password: Devise.friendly_token[0, 20]
-                     )
-    end
+    user ||= User.new(provider: auth.provider,
+                      uid: auth.uid,
+                      name: auth.info.name,
+                      email: auth.info.email,
+                      password: Devise.friendly_token[0, 20])
     user.save
     user.confirm
     user
