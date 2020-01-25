@@ -26,6 +26,8 @@
 
       .tab-content
         #posts_list.tab-pane.active
-          = render 'shared/posts_list', posts: @posts
+          .mb-3
+            = render 'shared/posts_list', posts: @posts
         #like_posts.tab-pane
-          = render 'shared/posts_list', posts: @like_posts
+          .mb-3
+            = render 'shared/posts_list', posts: @like_posts

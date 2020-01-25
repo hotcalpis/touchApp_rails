@@ -1,6 +1,6 @@
 .container
   .row
     .col-md-12
-      %h3.text-center.mt-md-3.mb-md-2 検索結果：「#{params[:search]}」
+      %h3.text-center.mt-md-3.mb-md-2 タグ：「#{params[:tag_name]}」
       .mb-3
         = render 'shared/posts_list', posts: @posts  

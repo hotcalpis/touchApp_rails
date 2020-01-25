@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes([:user, user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = Post.includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   def show
@@ -49,6 +49,10 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:search]).includes([:user, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
+  def tag
+    @posts = Post.all.tagged_with("#{params[:tag_name]}").includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
+  end
+
   private
 
   def correct_user
@@ -57,7 +61,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :tag_list)
   end
 
   def set_post
