@@ -298,7 +298,5 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
 
-  #Google認証
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email', redirect_uri: "#{ENV['HOST']}/users/auth/google_oauth2/callback"
-  OmniAuth.config.logger = Rails.logger if Rails.env.development?
+  config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
 end

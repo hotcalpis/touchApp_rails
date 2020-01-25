@@ -42,7 +42,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, 
-         :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i[google_oauth2]
+         :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i(github)
   validates :name, presence: true, length: { maximum: 50 }
   validates :profile, length: { maximum: 400 }
   validates :github, length: { maximum: 255 }
@@ -50,10 +50,23 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     uniqueness: { case_sensitive: false }
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+  def self.create_unique_string
+    SecureRandom.uuid
+  end
+
+  def self.find_for_github_oauth(auth, signed_in_resource=nil)
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+
+    unless user
+      user = User.new(provider: auth.provider,
+                      uid:      auth.uid,
+                      name:     auth.info.name,
+                      email:    auth.info.email,
+                      password: Devise.friendly_token[0, 20]
+      )
     end
+    user.save
+    user.confirm
+    user
   end
 end
