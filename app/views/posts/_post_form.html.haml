@@ -13,10 +13,13 @@
                 = msg
 
 
-        = f.label :title
+        = f.label :title, 'タイトル'
         = f.text_field :title, class: 'form-control'
 
-        = f.label :content, 'Content (Markdown)'
+        = f.label :tag_list, 'タグ (Rails,Git,MySQL, ...)'
+        = f.text_field :tag_list, value: post.tag_list.join(','), class: 'form-control'
+
+        = f.label :content, '本文 (Markdown)'
         = f.text_area :content, class: 'form-control', id: 'simplemde', rows: '5'
           
         = f.submit '投稿',  class: 'btn btn-primary float-right mb-4'

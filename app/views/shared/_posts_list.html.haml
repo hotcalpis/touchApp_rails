@@ -13,4 +13,9 @@
         = post.likes_count
         = image_tag('comment_icon.svg', size: '20x20')
         = post.comments_count
+      .h5.float-right.mr-5
+        = image_tag('tag_icon.svg', size: '18x18') if post.tag_list.present?
+        - post.tag_list.each do |tag|
+          %span.badge.badge-info.mr-1.p-1 
+            = tag
   = paginate posts
