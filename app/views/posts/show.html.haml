@@ -15,27 +15,27 @@
           %p 
             = l(@post.created_at, format: :long)
 
-        - if current_user == @post.user
-          = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
-
         .float-right.mr-3
           = render 'likes/like', post: @post, like: @like
 
       .content-wrapper
         = markdown_to_html(@post.content)
 
+      - if current_user == @post.user
+        = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
+
       .h3.float-right.mr-2
         = image_tag('tag_icon.svg', size: '25x25') if @post.tag_list.present?
         - @post.tag_list.each do |tag|
           %span.badge.badge-success.mr-1.p-1 
             = link_to tag, tag_posts_path(tag_name: tag), class: 'text-white text-decoration-none'
-        
-      - if user_signed_in? 
-        = form_for [@post, @comment] do |f|
-          = f.label :content, 'Comment', class: 'mt-5'
-          = f.text_area :content, class: 'form-control', rows: 4
 
-          = f.submit '投稿',  class: 'btn btn-primary float-right mt-2 mb-4'
+      .mt-5
+        - if user_signed_in? 
+          = form_for [@post, @comment] do |f|
+            = f.label :content, 'Comment', class: 'mt-5'
+            = f.text_area :content, class: 'form-control', rows: 4
+            = f.submit '投稿',  class: 'btn btn-primary float-right mt-2 mb-4'
       
       .mt-5.pt-1
         = render @comments
