@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_134511) do
     t.text "profile"
     t.string "github"
     t.string "twitter"
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
