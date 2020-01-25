@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      %h3.text-center.mt-2 
+      %h3.text-center.mt-2.mb-3 
         touchAppは作成した
         %span.addition_text(aria-label="小さな開発成果も歓迎します！") アプリケーション
         を紹介するための記事投稿サイトです
@@ -10,7 +10,5 @@
         .text-center
           = button_to("テストユーザーでログイン", testlogin_users_path, method: :get, class: 'btn btn-primary')
 
-      %p.text-center.mt-md-5 投稿一覧
-
-      .mb-3
+      .mt-5.mb-3
         = render 'shared/posts_list', posts: @posts
