@@ -13,6 +13,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :github
       t.string :twitter
 
+      t.string :provider
+      t.string :uid
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

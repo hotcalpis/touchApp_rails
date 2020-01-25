@@ -14,10 +14,12 @@
 #  github                 :string(255)
 #  name                   :string(255)      default(""), not null
 #  profile                :text(65535)
+#  provider               :string(255)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
 #  twitter                :string(255)
+#  uid                    :string(255)
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -39,12 +41,19 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, 
+         :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i[google_oauth2]
   validates :name, presence: true, length: { maximum: 50 }
   validates :profile, length: { maximum: 400 }
   validates :github, length: { maximum: 255 }
   validates :twitter, length: { maximum: 255 }
   validates :email, presence: true, length: { maximum: 255 },
                     uniqueness: { case_sensitive: false }
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 end
