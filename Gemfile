@@ -22,6 +22,7 @@ gem 'mini_magick', '~> 4.8'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'acts-as-taggable-on'
 gem 'annotate'
 gem 'aws-sdk-s3', require: false
 gem 'bootstrap'
@@ -35,12 +36,12 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'meta-tags'
 gem 'mysql2'
+gem 'omniauth'
+gem 'omniauth-github'
 gem 'rails_admin'
 gem 'redcarpet'
 gem 'rouge'
 gem 'rubocop', require: false
-gem 'omniauth'
-gem 'omniauth-github'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
