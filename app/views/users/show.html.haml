@@ -14,7 +14,7 @@
         = button_to 'ユーザー情報編集', edit_user_registration_path, method: :get, class: 'btn btn-primary float-right'
       .float-right.mr-2
         - if @user.github && @user.github != ''
-          = link_to image_tag('github_icon.svg', size: '40x40'), "#{@user.github}"
+          = link_to image_tag('github_icon.svg', size: '41x41'), "#{@user.github}"
         - if @user.twitter && @user.twitter != ''
           = link_to image_tag('twitter_icon.svg', size: '40x40'), "#{@user.twitter}"
 
