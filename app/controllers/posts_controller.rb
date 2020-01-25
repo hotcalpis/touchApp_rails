@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def tag
-    @posts = Post.all.tagged_with("#{params[:tag_name]}").includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = Post.all.tagged_with(params[:tag_name].to_s).includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   private
