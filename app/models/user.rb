@@ -62,8 +62,9 @@ class User < ApplicationRecord
                       name: auth.info.name,
                       email: auth.info.email,
                       password: Devise.friendly_token[0, 20])
+    user.skip_confirmation!
     user.save
-    user.confirm
+    NotificationMailer.send_password_for_github_registration(user).deliver if user.password
     user
   end
 end

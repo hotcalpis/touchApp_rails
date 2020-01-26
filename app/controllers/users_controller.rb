@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   def testlogin
     user = User.find_by(email: 'testuser@testuser.testuser')
-    user.confirm unless user.confirmed_at
     sign_in user
     flash[:success] = 'テストユーザーでログインしました。'
     redirect_to root_url
