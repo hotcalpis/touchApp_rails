@@ -2,4 +2,4 @@
 
 User.create!(name: 'TestUser',
              email: 'testuser@testuser.testuser',
-             password: 'm3if8wk2rkdj')
+             password: "#{Rails.application.credentials[:testuser_password]}")
