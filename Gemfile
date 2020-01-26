@@ -29,7 +29,6 @@ gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
 gem 'factory_bot_rails'
-gem 'faker'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -73,9 +72,6 @@ end
 
 group :development, :production do
   gem 'unicorn'
-end
-
-group :production, :staging do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
