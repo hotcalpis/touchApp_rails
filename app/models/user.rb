@@ -64,9 +64,9 @@ class User < ApplicationRecord
                       password: Devise.friendly_token[0, 20])
     user.skip_confirmation!
     user.save
-		##初期パスワードの通知メール　セキュリティ面を考えて除外
+    # #初期パスワードの通知メール　セキュリティ面を考えて除外
     # if user.password
-      # NotificationMailer.send_password_for_github_registration(user).deliver
+    # NotificationMailer.send_password_for_github_registration(user).deliver
     # end
     user
   end
