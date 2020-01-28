@@ -64,9 +64,9 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
 
-  ##ajaxテストの際に使用、qmakeコマンドなど環境構築が膨らむので除外
-  #gem 'capybara-webkit'
-  #gem 'database_cleaner'
+  # #ajaxテストの際に使用、qmakeコマンドなど環境構築が膨らむので除外
+  # gem 'capybara-webkit'
+  # gem 'database_cleaner'
   gem 'puma'
   gem 'webdrivers'
 end

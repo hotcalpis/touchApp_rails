@@ -22,6 +22,4 @@ RUN \
 
 COPY . $APP_ROOT
 
-#RUN chmod 644 /etc/mysql/conf.d/default_authentication.cnf   ###自動でdefault_authentication_pluginをmysql_native_passwordにしたい。が、windowsの権限システムが邪魔して？出来ないのでとりあえず手動でMySQL内部から変更
-
 EXPOSE 3000
