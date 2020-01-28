@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
@@ -28,8 +28,8 @@ jobs:
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+        name: Wait for DB
+        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load
