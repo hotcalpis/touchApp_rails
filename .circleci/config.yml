@@ -5,10 +5,13 @@ jobs:
       - image: circleci/ruby:2.6.5-node-browsers-legacy
         environment:
           RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
       - image: circleci/mysql:8.0.16
         environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
+          # - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          # - MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/repo
 
