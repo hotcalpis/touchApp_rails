@@ -9,8 +9,6 @@ jobs:
           DB_USERNAME: 'root'
           DB_PASSWORD: ''
       - image: circleci/mysql:8.0.16
-        environment:
-          default-authentication-plugin: mysql_native_password
 
     working_directory: ~/repo
 
@@ -37,6 +35,7 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
+      - run: default_authentication_plugin = mysql_native_password
       - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load
 
