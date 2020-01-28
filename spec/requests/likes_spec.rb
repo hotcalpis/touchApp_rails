@@ -26,10 +26,12 @@ RSpec.describe 'Likes', type: :request do
       post post_likes_path(post)
       expect(post.reload.likes_count).to eq 1
 
-      delete post_like_path(post_id: post.id, id: 1)
+      like_id = Like.find_by(user_id: user, post_id: post).id
+
+      delete post_like_path(post_id: post.id, id: like_id)
       expect(post.reload.likes_count).to eq 0
 
-      expect { delete post_like_path(post_id: post.id, id: 1) }.to raise_error NoMethodError
+      expect { delete post_like_path(post_id: post.id, id: like_id) }.to raise_error NoMethodError
 
       post post_likes_path(post)
       expect(post.reload.likes_count).to eq 1

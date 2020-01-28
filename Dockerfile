@@ -5,7 +5,7 @@ ENV DB_HOST db
 WORKDIR $APP_ROOT
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libpq-dev nodejs qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x --no-install-recommends && \
+    apt-get install -y build-essential libpq-dev nodejs --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
 RUN gem install bundler
