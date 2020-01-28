@@ -9,6 +9,8 @@ jobs:
           DB_USERNAME: 'root'
           DB_PASSWORD: ''
       - image: circleci/mysql:8.0.16
+        environment:
+          default-authentication-plugin: mysql_native_password
 
     working_directory: ~/repo
 
