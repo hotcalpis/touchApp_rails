@@ -14,17 +14,15 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: 'Password1+'
-      MYSQL_DATABASE: 'db'
       MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'Password1+'
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      #- ./mysql-confd:/etc/mysql/conf.d   ##自動でdefault_authentication_pluginをmysql_native_passwordにしたい。が、windowsの権限システムが邪魔して？出来ないのでとりあえず手動でMySQL内部から変更
+    command: --default-authentication-plugin=mysql_native_password
 
 volumes:
   mysql_data:
     driver: local
 
-##　MySQLで 'root'@'%' password='Password1+' authentication_plugin='mysql_native_password' の作成を手動
+##　MySQLで 'root'@'%' password='Password1+' authentication_plugin='mysql_native_password' の作成
