@@ -22,7 +22,11 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
 
-      - run: bundle install  --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          name: install dependencies
+          command: |
+            gem install bundler:2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
@@ -40,7 +44,7 @@ jobs:
 
       - run:
           name: run tests
-          commands: |
+          command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
