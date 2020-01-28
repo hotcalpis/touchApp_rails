@@ -35,7 +35,10 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
-      - run: default_authentication_plugin = mysql_native_password
+      - run:
+          name: change mysql authentication plugin
+          command: --default_authentication_plugin=mysql_native_password
+          
       - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load
 
