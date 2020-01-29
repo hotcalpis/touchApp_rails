@@ -1,12 +1,12 @@
 - if user_signed_in?
   - if like = post.liked_by?(current_user)
-    = link_to post_like_path(post_id: post.id, id: like.id), method: :delete, id: 'like_button', class: 'unlike_button', remote: true do
+    = link_to post_like_path(post_id: post.id, id: like.id), method: :delete, id: 'unlike_button', class: 'text-decoration-none', remote: true do
       = image_tag('like_icon_green.svg', size: '50x50')
       %span
         = post.likes_count
       
   - else
-    = link_to post_likes_path(post), method: :post, id: 'like_button', class: 'like_button', remote: true do
+    = link_to post_likes_path(post), method: :post, id: 'like_button', class: 'text-decoration-none', remote: true do
       = image_tag('like_icon_gray.svg', size: '50x50')
       %span
         = post.likes_count

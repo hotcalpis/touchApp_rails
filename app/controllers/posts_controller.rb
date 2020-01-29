@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search]).includes([:user, user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = Post.search(params[:search]).includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   def tag

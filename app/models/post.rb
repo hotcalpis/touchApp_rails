@@ -43,6 +43,6 @@ class Post < ApplicationRecord
   def self.search(search_word)
     return Post.all unless search_word
 
-    Post.where(['content LIKE ?', "%#{search_word}%"])
+    Post.where(['title LIKE ? OR content LIKE ?', "%#{search_word}%", "%#{search_word}%"])
   end
 end

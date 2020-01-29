@@ -20,11 +20,11 @@ RSpec.describe 'Likes', type: :system do
       visit post_path(post)
 
       expect(post.likes_count).to eq 0
-      find('.like_button').click
+      find('#like_button').click
       # wait_for_ajax(5)
       sleep 2
       expect(post.reload.likes_count).to eq 1
-      find('.unlike_button').click
+      find('#unlike_button').click
       # wait_for_ajax(5)
       sleep 2
       expect(post.reload.likes_count).to eq 0
