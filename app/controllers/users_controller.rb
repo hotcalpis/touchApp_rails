@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     user = User.find_by(email: 'testuser@testuser.testuser')
     user ||= User.create!(name: 'テストユーザー',
                           email: 'testuser@testuser.testuser',
-                          password: Rails.application.credentials[:testuser_password].to_s,
+                          password: Rails.application.credentials[:testuser_password].to_s || 'MaybeCircleCiCanNotHaveCredentials',
                           confirmed_at: Time.now.utc.to_s)
     sign_in user
     flash[:success] = 'テストユーザーでログインしました。'

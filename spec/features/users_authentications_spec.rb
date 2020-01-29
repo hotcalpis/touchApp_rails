@@ -31,16 +31,4 @@ RSpec.feature 'users_authentications', type: :feature do
       expect(ActionMailer::Base.deliveries.size).to eq(1)
     end
   end
-
-  feature 'user login' do
-  end
-
-  feature 'user edit' do
-  end
-
-  feature 'user new_password_reset' do
-  end
-
-  feature 'user edit_password_reset' do
-  end
 end

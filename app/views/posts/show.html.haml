@@ -3,10 +3,10 @@
 .container.mt-2
   .row
     .col-md-12
-      %h2.m-4
+      %h2.mt-4.mb-4
         = @post.title
 
-      .m-4.overflow-hidden
+      .mt-4.mb-4.overflow-hidden
         .float-left
           = link_to user_url(@post.user) do
             = display_user_avatar(@post.user, 55, 55)
@@ -15,7 +15,7 @@
           %p 
             = l(@post.created_at, format: :long)
 
-        .float-right.mr-3
+        .float-right
           = render 'likes/like', post: @post, like: @like
 
       .content-wrapper
