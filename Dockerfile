@@ -17,6 +17,7 @@ RUN \
   cp ~/.gemrc /etc/gemrc && \
   chmod ugo+r /etc/gemrc && \
   bundle config --global jobs 4 && \
+	bundle config set without 'production' && \
   bundle install && \
   rm -rf ~/.gem
 

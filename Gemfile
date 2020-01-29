@@ -36,7 +36,6 @@ gem 'kaminari-bootstrap'
 gem 'meta-tags'
 gem 'mysql2'
 gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin'
 gem 'redcarpet'
 gem 'rouge'
@@ -45,7 +44,6 @@ gem 'rubocop', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-
   gem 'rspec-rails'
 end
 
@@ -54,26 +52,28 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'bullet'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
-  gem 'bullet'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'puma'
   gem 'selenium-webdriver'
-
+  gem 'webdrivers'
   # #ajaxテストの際に使用、qmakeコマンドなど環境構築が膨らむので除外
   # gem 'capybara-webkit'
   # gem 'database_cleaner'
-  gem 'puma'
-  gem 'webdrivers'
 end
 
 group :development, :production do
   gem 'unicorn'
+end
+
+group :production do
+  gem 'omniauth-rails_csrf_protection'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
