@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let!(:user) { create(:user) }
-  let!(:other_user) { create(:other_user) }
-  let!(:post_params) { attributes_for(:post) }
-  let!(:invalid_post_params) { attributes_for(:post, title: '') }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
+  let(:post_params) { attributes_for(:post) }
+  let(:invalid_post_params) { attributes_for(:post, title: '') }
 
   before { user.confirm }
   before { other_user.confirm }
