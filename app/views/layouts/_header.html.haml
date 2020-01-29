@@ -9,7 +9,7 @@
                                                                   
         - if user_signed_in?
           %li.nav-item
-            = link_to("新規投稿", new_post_url, class: "nav-link")
+            = link_to("新規投稿", new_post_url, class: "nav-link", data: {"turbolinks": false})
           %li.nav-item  
             = link_to("ログアウト", destroy_user_session_url, method: :DELETE, class: "nav-link")
           %li.nav-item
