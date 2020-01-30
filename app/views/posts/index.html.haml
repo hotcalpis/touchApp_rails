@@ -6,9 +6,22 @@
         %span.addition_text(aria-label="小さな開発成果も歓迎します！") アプリケーション
         を紹介するための記事投稿サイトです
 
-      - unless user_signed_in?
-        .text-center
+      .text-center
+        - if user_signed_in?
+          = button_to("記事を投稿する", new_post_path, method: :get, class: 'btn btn-success', data: {"turbolinks": false})
+        - else
           = button_to("テストユーザーでログイン", testlogin_users_path, method: :get, class: 'btn btn-primary')
 
-      .mt-5.mb-3
-        = render 'shared/posts_list', posts: @posts
+      %ul.nav.nav-tabs.mt-4
+        %li.nav-item
+          %a{ href: '#posts_list', class: 'nav-link active bg-white text-muted', 'data-toggle' => 'tab' } 新着記事
+        %li.nav-item
+          %a{ href: '#popular_posts_list', class: 'nav-link bg-white text-muted', 'data-toggle' => 'tab' } いいねの多い記事
+
+      .tab-content
+        #posts_list.tab-pane.active
+          .mb-3
+            = render 'shared/posts_list', posts: @posts
+        #popular_posts_list.tab-pane
+          .mb-3
+            = render 'shared/posts_list', posts: @popular_posts

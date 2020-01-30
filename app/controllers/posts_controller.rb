@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
+    @popular_posts = Post.includes([:user, :taggings, user: :avatar_attachment]).reorder(likes_count: :desc).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def show
