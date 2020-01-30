@@ -5,3 +5,7 @@ inherit_from: .rubocop_todo.yml
 
 AsciiComments:
   Enabled: false
+
+Lint/ScriptPermission:
+  Exclude:
+    - bin/rspec 
