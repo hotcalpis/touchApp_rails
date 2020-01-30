@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to(root_url) && return unless @user.confirmed?
-    @posts = @user.posts.page(params[:page]).per(8)
-    @like_posts = @user.liked_posts.includes([user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = @user.posts.includes([:taggings]).page(params[:page]).per(8)
+    @like_posts = @user.liked_posts.includes([:taggings, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   def testlogin
