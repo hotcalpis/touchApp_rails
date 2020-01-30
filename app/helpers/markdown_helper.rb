@@ -15,13 +15,17 @@ module MarkdownHelper
         space_after_headers: true
       }
       extensions = {
-        no_intra_emphasis: true,
-        tables: true,
-        fenced_code_blocks: true,
         autolink: true,
-        superscript: true
+        fenced_code_blocks: true,
+        highlight: true,
+        lax_spacing: true,
+        no_intra_emphasis: true,
+        quote: true,
+        # safe_links_only: true,
+        superscript: true,
+        strikethrough: true,
+        tables: true
       }
-      # renderer = Redcarpet::Render::HTML.new(options)
       renderer = HTML.new(options)
       @markdown = Redcarpet::Markdown.new(renderer, extensions)
     end
