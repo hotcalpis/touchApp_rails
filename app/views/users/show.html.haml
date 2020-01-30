@@ -32,7 +32,7 @@
             - if @posts.present?
               = render 'shared/posts_list', posts: @posts
             - else
-              .block.bg-white.p-3
+              .block.bg-white.text-center.p-3
                 %p 投稿がありません
 
         #like_posts.tab-pane
@@ -40,5 +40,5 @@
             - if @like_posts.present?
               = render 'shared/posts_list', posts: @like_posts
             - else
-              .block.bg-white.p-3
+              .block.bg-white.text-center.p-3
                 %p いいねがありません

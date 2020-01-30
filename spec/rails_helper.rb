@@ -77,41 +77,34 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # # suite: RSpecコマンドでテストを実行する単位
-  # # all:  各テストファイル(xxx_spec.rb)単位
-  # # each: 各テストケース(it)単位
+  # ajaxテスト
   # config.before(:suite) do
-  #   DatabaseCleaner.clean_with :truncation # テスト開始時にDBをクリーンにする
+  #   DatabaseCleaner.clean_with :truncation
   # end
-
-  # # js以外のテスト時は通常のtransactionでデータを削除する
   # config.before(:each) do
   #   DatabaseCleaner.strategy = :transaction
   # end
-
-  # # jsのテスト時はtruncationで削除する
   # config.before(:each, js: true) do
   #   DatabaseCleaner.strategy = :truncation
   # end
-
   # config.before(:each) do
   #   DatabaseCleaner.start
   # end
-
   # config.after(:each) do
   #   DatabaseCleaner.clean
   # end
 
   # config.after(:all) do
-  #   DatabaseCleaner.clean_with :truncation # all時にDBをクリーンにする
+  #   DatabaseCleaner.clean_with :truncation
   # end
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
+  # 自作したログインヘルパー
   # config.include SystemSpecHelper, type: :system
 
-  # # ajaxのテスト用
+  # # ajaxテスト
   # config.include WaitForAjax, type: :system
   # config.include WaitForCss, type: :system
 

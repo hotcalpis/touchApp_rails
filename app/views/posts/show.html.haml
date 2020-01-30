@@ -16,7 +16,7 @@
             = l(@post.created_at, format: :long)
 
         .float-right
-          = render 'likes/like', post: @post, like: @like
+          = render 'likes/like', post: @post
 
       .content-wrapper
         = markdown_to_html(@post.content)

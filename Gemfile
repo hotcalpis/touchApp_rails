@@ -25,10 +25,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'acts-as-taggable-on'
 gem 'annotate'
 gem 'aws-sdk-s3', require: false
+gem 'aws-ses'
 gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
-gem 'factory_bot_rails'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -45,6 +45,9 @@ gem 'rubocop', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
 end
 
@@ -55,6 +58,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'bullet'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
@@ -64,7 +68,7 @@ group :test do
   gem 'puma'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  # #ajaxテストの際に使用、qmakeコマンドなど環境構築が膨らむので除外
+  # #ajaxテストの際に使用、qmakeコマンドなど環境構築が膨らんでしまう
   # gem 'capybara-webkit'
   # gem 'database_cleaner'
 end
