@@ -11,11 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to @post
-    else
-      render new_post_path
-    end
+    @post.save ? (redirect_to @post) : (render :new)
   end
 
   def index
@@ -34,16 +30,14 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post
     else
-      flash[:danger] = 'タイトル、内容を入力してください'
-      # 本当はrenderにして編集内容を残しておきたいけど"Missing template posts/4/edit"というエラーが発生
-      redirect_to edit_post_path(@post)
+      render :edit
     end
   end
 
   def destroy
     @post.destroy
     flash[:success] = '投稿を削除しました'
-    redirect_to user_url current_user
+    redirect_to current_user
   end
 
   def search

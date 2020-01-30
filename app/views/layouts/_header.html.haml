@@ -5,7 +5,7 @@
     %ul.nav.navbar-right.navbar-nav
       %button.navbar-toggler{type: "button", "data-toggle": "collapse", "data-target": "#navbars01", "aria-controls": "navbars01", "aria-expanded": "false", "aria-label": "Toggle navigation"}
         %span.navbar-toggler-icon
-      #navbars01.collapse.navbar-collapse
+      #navbars01.collapse.navbar-collapse.text-center
                                                                   
         - if user_signed_in?
           %li.nav-item
@@ -13,15 +13,15 @@
           %li.nav-item  
             = link_to("ログアウト", destroy_user_session_url, method: :DELETE, class: "nav-link")
           %li.nav-item
-            = link_to("マイページ", user_path(current_user), class: "nav-link mr-4")
+            = link_to("マイページ", user_path(current_user), class: "nav-link")
         - else
           %li.nav-item
             = link_to("ログイン", new_user_session_url, class: "nav-link")
           %li.nav-item
-            = link_to("新規登録", new_user_registration_url, class: "nav-link mr-4")
+            = link_to("新規登録", new_user_registration_url, class: "nav-link")
 
-        %li.nav-item
+        %li.nav-item.ml-3
           = form_tag search_posts_path, method: :get, class: "form-inline" do
             %div{style: "display:inline-flex"}
               = text_field_tag :search, '', class: 'form-control form-control-sm mr-2'
-              = image_submit_tag 'search_icon.svg', class: 'search_button'
+              = image_submit_tag 'search_icon.svg', width: '25px', height: '25px'
