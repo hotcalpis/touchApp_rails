@@ -13,34 +13,34 @@
           %p.text-left
             = @user.profile
 
+      - if current_user == @user 
+        = button_to 'ユーザー編集', edit_user_registration_path, method: :get, class: 'btn btn-primary float-right'
+      .float-right.mr-2
+        - if @user.github && @user.github != ''
+          = link_to image_tag('github_icon.svg', size: '41x41'), "#{@user.github}"
+        - if @user.twitter && @user.twitter != ''
+          = link_to image_tag('twitter_icon.svg', size: '40x40'), "#{@user.twitter}"
+
       .block
-        - if current_user == @user 
-          = button_to 'ユーザー編集', edit_user_registration_path, method: :get, class: 'btn btn-primary float-right'
-        .float-right.mr-2
-          - if @user.github && @user.github != ''
-            = link_to image_tag('github_icon.svg', size: '41x41'), "#{@user.github}"
-          - if @user.twitter && @user.twitter != ''
-            = link_to image_tag('twitter_icon.svg', size: '40x40'), "#{@user.twitter}"
+        %ul.nav.nav-tabs
+          %li.nav-item
+            %a{ href: '#posts_list', class: 'nav-link active bg-white text-muted', 'data-toggle' => 'tab' } 投稿一覧
+          %li.nav-item
+            %a{ href: '#like_posts', class: 'nav-link bg-white text-muted', 'data-toggle' => 'tab' } いいねした記事
 
-      %ul.nav.nav-tabs
-        %li.nav-item
-          %a{ href: '#posts_list', class: 'nav-link active bg-white text-muted', 'data-toggle' => 'tab' } 投稿一覧
-        %li.nav-item
-          %a{ href: '#like_posts', class: 'nav-link bg-white text-muted', 'data-toggle' => 'tab' } いいねした記事
+        .tab-content
+          #posts_list.tab-pane.active
+            .mb-3
+              - if @posts.present?
+                = render 'shared/posts_list', posts: @posts
+              - else
+                .block.bg-white.text-center.p-3
+                  %p 投稿がありません
 
-      .tab-content
-        #posts_list.tab-pane.active
-          .mb-3
-            - if @posts.present?
-              = render 'shared/posts_list', posts: @posts
-            - else
-              .block.bg-white.text-center.p-3
-                %p 投稿がありません
-
-        #like_posts.tab-pane
-          .mb-3
-            - if @like_posts.present?
-              = render 'shared/posts_list', posts: @like_posts
-            - else
-              .block.bg-white.text-center.p-3
-                %p いいねがありません
+          #like_posts.tab-pane
+            .mb-3
+              - if @like_posts.present?
+                = render 'shared/posts_list', posts: @like_posts
+              - else
+                .block.bg-white.text-center.p-3
+                  %p いいねがありません
