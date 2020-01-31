@@ -6,7 +6,7 @@
         = post.title
       %h5.block.overflow-hidden
         .float-right
-          - post.tag_list.each do |tag|
+          - post.tags.pluck(:name).each do |tag|
             %span.badge.badge-info.mr-1
               = tag
       .block
