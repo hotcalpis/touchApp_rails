@@ -21,9 +21,9 @@
 #                                PUT      /users(.:format)                                                                         users/registrations#update
 #                                DELETE   /users(.:format)                                                                         users/registrations#destroy
 #                                POST     /users(.:format)                                                                         users/registrations#create
-#          new_user_confirmation GET      /users/confirmation/new(.:format)                                                        devise/confirmations#new
-#              user_confirmation GET      /users/confirmation(.:format)                                                            devise/confirmations#show
-#                                POST     /users/confirmation(.:format)                                                            devise/confirmations#create
+#          new_user_confirmation GET      /users/confirmation/new(.:format)                                                        users/confirmations#new
+#              user_confirmation GET      /users/confirmation(.:format)                                                            users/confirmations#show
+#                                POST     /users/confirmation(.:format)                                                            users/confirmations#create
 #                           root GET      /                                                                                        posts#index
 #                testlogin_users GET      /users/testlogin(.:format)                                                               users#testlogin
 #                           user GET      /users/:id(.:format)                                                                     users#show
@@ -63,7 +63,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    confirmations: 'users/confirmations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
