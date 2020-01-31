@@ -15,8 +15,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
-    @popular_posts = Post.includes([:user, :taggings, user: :avatar_attachment]).reorder(likes_count: :desc).order(created_at: :desc).page(params[:page]).per(8)
+    @posts = Post.includes([:user, :tags, user: :avatar_attachment]).page(params[:page]).per(8)
+    @popular_posts = Post.includes([:user, :tags, user: :avatar_attachment]).reorder(likes_count: :desc).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def show
@@ -41,11 +41,11 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search]).includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = Post.search(params[:search]).includes([:user, :tags, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   def tag
-    @posts = Post.all.tagged_with(params[:tag_name].to_s).includes([:user, :taggings, user: :avatar_attachment]).page(params[:page]).per(8)
+    @posts = Post.all.tagged_with(params[:tag_name].to_s).includes([:user, :tags, user: :avatar_attachment]).page(params[:page]).per(8)
   end
 
   private

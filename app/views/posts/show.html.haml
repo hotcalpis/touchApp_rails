@@ -25,8 +25,8 @@
         = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
 
       .h3.float-right.mr-2
-        = image_tag('tag_icon.svg', size: '25x25') if @post.tag_list.present?
-        - @post.tag_list.each do |tag|
+        = image_tag('tag_icon.svg', size: '25x25') if @post.tags.pluck(:name).present?
+        - @post.tags.pluck(:name).each do |tag|
           %span.badge.badge-success.mr-1.p-1 
             = link_to tag, tag_posts_path(tag_name: tag), class: 'text-white text-decoration-none'
 
