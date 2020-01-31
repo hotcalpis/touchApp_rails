@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Testlogin', type: :system do
-  # # credentialが使えないからかcircleciがfailureを出す
+  # # credentialsが使えないからかcircleciがfailureを出す、2020/01/29 ローカルでpassすることを確認
   # it 'users#testlogin' do
   #   visit posts_path
 
