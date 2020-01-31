@@ -27,8 +27,9 @@
 ### インフラ
 - AWS (EC2, RDS-MySQL, S3, Route53, SES)
   - 他、ACMでSSL証明書を発行しALBへの通信をhttps化、IAMで権限管理など
+- Nginx & Unicorn
 
-### 環境/ツール
+### 開発環境/ツール
 - Windows10/Vagrant/Virtualbox/CentOS7.0
 - VScode
 - Docker
