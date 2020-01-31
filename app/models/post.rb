@@ -42,8 +42,12 @@ class Post < ApplicationRecord
   end
 
   def self.search(search_word)
-    return Post.all unless search_word
+    split_search_word = search_word.split(/[[:blank:]]+/)
 
-    Post.where(['title LIKE ? OR content LIKE ?', "%#{search_word}%", "%#{search_word}%"])
+    sum_posts = Post.all
+    split_search_word.each do |keyword|
+      sum_posts = sum_posts.where(['title LIKE ? OR content LIKE ?', "%#{keyword}%", "%#{keyword}%"])
+    end
+    sum_posts
   end
 end
