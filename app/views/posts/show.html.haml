@@ -1,43 +1,41 @@
 - set_meta_tags site: @post.title, separator: '-'
 
 .container.mt-2
-  .row
-    .col-md-12
-      %h2.mt-4.mb-4
-        = @post.title
+  %h2.mt-4.mb-4
+    = @post.title
 
-      .mt-4.mb-4.overflow-hidden
-        .float-left
-          = link_to user_url(@post.user) do
-            = display_user_avatar(@post.user, 55, 55)
-        .float-left.ml-2.mr-4
-          = link_to @post.user.name, user_url(@post.user)
-          %p 
-            = l(@post.created_at, format: :long)
+  .mt-4.mb-4.overflow-hidden
+    .float-left
+      = link_to user_url(@post.user) do
+        = display_user_avatar(@post.user, 55, 55)
+    .float-left.ml-2.mr-4
+      = link_to @post.user.name, user_url(@post.user)
+      %p 
+        = l(@post.created_at, format: :long)
 
-        .float-right
-          = render 'likes/like', post: @post
+    .float-right
+      = render 'likes/like', post: @post
 
-      .content-wrapper
-        = markdown_to_html(@post.content)
+  .content-wrapper
+    = markdown_to_html(@post.content)
 
-      - if current_user == @post.user
-        = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
+  - if current_user == @post.user
+    = button_to "編集", edit_post_path(@post), method: :get, class: 'btn btn-primary float-right'
 
-      .h3.float-right.mr-2
-        = image_tag('tag_icon.svg', size: '25x25') if @post.tags.pluck(:name).present?
-        - @post.tags.pluck(:name).each do |tag|
-          %span.badge.badge-success.mr-1.p-1 
-            = link_to tag, tag_posts_path(tag_name: tag), class: 'text-white text-decoration-none'
+  .h3.float-right.mr-2
+    = image_tag('tag_icon.svg', size: '25x25') if @post.tags.present?
+    - @post.tags.pluck(:name).each do |tag|
+      %span.badge.badge-success.mr-1.p-1 
+        = link_to tag, tag_posts_path(tag_name: tag), class: 'text-white text-decoration-none'
 
-      .mt-5
-        - if user_signed_in? 
-          = form_for [@post, @comment] do |f|
-            = f.label :content, 'コメント', class: 'mt-5'
-            = f.text_area :content, class: 'form-control', rows: 4
-            = f.submit '投稿',  class: 'btn btn-primary float-right mt-2 mb-4'
-      
-      .mt-5.pt-1
-        - if !user_signed_in? && @comments.present?
-          .mt-5.mb-2 コメント
-        = render @comments
+  .mt-5
+    - if user_signed_in? 
+      = form_for [@post, @comment] do |f|
+        = f.label :content, 'コメント', class: 'mt-5'
+        = f.text_area :content, class: 'form-control', rows: 4
+        = f.submit '投稿',  class: 'btn btn-primary float-right mt-2 mb-4'
+  
+  .mt-5.pt-1
+    - if !user_signed_in? && @comments.present?
+      .mt-5.mb-2 コメント
+    = render @comments

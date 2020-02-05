@@ -1,6 +1,4 @@
 .container
-  .row
-    .col-md-12
-      %h3.text-center.mt-md-3.mb-md-2 タグ：「#{params[:tag_name]}」
-      .mb-3
-        = render 'shared/posts_list', posts: @posts  
+  %h3.text-center.mt-md-3.mb-md-2 タグ：「#{params[:tag_name]}」
+  .mb-3
+    = render 'shared/post_list', posts: @posts  

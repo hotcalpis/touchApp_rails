@@ -8,6 +8,6 @@
       = comment.user.name
 
   %p
-    = comment.content
+    = simple_format(h(comment.content))
     - if comment.user == current_user
       = link_to "削除", post_comment_path(post_id: @post.id, id: comment.id), data: { confirm: "本当に削除しますか？" }, method: :delete
