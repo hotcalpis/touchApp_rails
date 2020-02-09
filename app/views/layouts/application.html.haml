@@ -17,8 +17,3 @@
           = content_tag(:div, message, class: "alert alert-#{message_type}")
       = yield
       = render 'layouts/footer'
-
-%script
-  $(function(){
-  setTimeout("$('.alert').fadeOut('slow')", 3000)
-  })
