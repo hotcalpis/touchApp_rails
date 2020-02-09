@@ -12,8 +12,27 @@
 //
 //= require rails-ujs
 //= require jquery3
+//= require inline-attachment
+//= require jquery.inline-attachment
 //= require activestorage
 //= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function(){
+  setTimeout("$('.alert').fadeOut('slow')", 3000)
+});
+
+$(function() {
+  $('.custom-file-input').on('change',function(){
+    $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+  });
+});
+
+$(function() {
+  const mde = new SimpleMDE({
+    element: document.getElementById("simplemde")
+  });
+});
+
