@@ -25,7 +25,7 @@
 #              user_confirmation GET      /users/confirmation(.:format)                                                            users/confirmations#show
 #                                POST     /users/confirmation(.:format)                                                            users/confirmations#create
 #                           root GET      /                                                                                        posts#index
-#                testlogin_users GET      /users/testlogin(.:format)                                                               users#testlogin
+#                testlogin_users POST     /users/testlogin(.:format)                                                               users#testlogin
 #                           user GET      /users/:id(.:format)                                                                     users#show
 #                     post_likes POST     /posts/:post_id/likes(.:format)                                                          likes#create
 #                      post_like DELETE   /posts/:post_id/likes/:id(.:format)                                                      likes#destroy
@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
   resources :users, only: [:show] do
-    get :testlogin, on: :collection
+    post :testlogin, on: :collection
   end
 
   resources :posts do

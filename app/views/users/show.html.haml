@@ -6,7 +6,7 @@
   %p.text-center 
     = @user.name
   .mx-auto.pl-5.pr-5
-    - if @user.profile
+    - if @user.profile.present?
       %h5.text-left 自己紹介
       %p.text-left
         = simple_format(h(@user.profile))
