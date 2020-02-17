@@ -8,7 +8,7 @@
     - if user_signed_in?
       = button_to("記事を投稿する", new_post_path, method: :get, class: 'btn btn-success', data: {"turbolinks": false})
     - else
-      = button_to("テストユーザーでログイン", testlogin_users_path, method: :get, class: 'btn btn-primary')
+      = button_to("テストユーザーでログイン", testlogin_users_path, class: 'btn btn-primary')
 
   %ul.nav.nav-tabs.mt-4
     %li.nav-item
